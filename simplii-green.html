@@ -645,10 +645,10 @@ p{text-wrap:pretty}
 .review-summary.in .rs-bar-fill{transform:scaleX(var(--p,0))}
 .rs-bar-pct{font-family:var(--cond);font-weight:700;font-size:.78rem;color:var(--green);opacity:.55;text-align:right}
 /* community photo strip */
-.rs-photos{display:flex;flex-direction:column;gap:12px;padding-left:34px;border-left:1px solid rgba(21,64,72,.12)}
+.rs-photos{display:flex;flex-direction:column;gap:12px;padding-left:34px;border-left:1px solid rgba(21,64,72,.12);min-width:0}
 .rs-photos-label{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.74rem;color:var(--green);opacity:.62;display:flex;align-items:center;gap:8px}
 .rs-photos-label svg{width:15px;height:15px}
-.rs-strip{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.rs-strip{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;min-width:0}
 .rs-strip::-webkit-scrollbar{display:none}
 .rs-thumb{flex:0 0 auto;width:76px;height:76px;border-radius:14px;overflow:hidden;cursor:pointer;
   border:2px solid var(--white);box-shadow:var(--el-2);position:relative;transition:transform .3s var(--ease-out),box-shadow .3s var(--ease-out)}
@@ -719,12 +719,13 @@ p{text-wrap:pretty}
   font-family:var(--cond);font-weight:700;letter-spacing:.04em;font-size:.92rem;opacity:.85}
 
 @media(max-width:900px){
-  .review-summary{grid-template-columns:1fr 1fr;gap:26px 30px;padding:28px 26px}
+  .review-summary{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px 30px;padding:28px 26px}
   .rs-score{border-right:none;border-bottom:1px solid rgba(21,64,72,.12);padding:0 0 22px;grid-column:1/-1;
     display:flex;flex-direction:column;align-items:center}
   .rs-photos{border-left:none;padding-left:0;grid-column:1/-1;border-top:1px solid rgba(21,64,72,.12);padding-top:22px}
+  .rs-photos-label{justify-content:center}
 }
-@media(max-width:560px){.review-summary{grid-template-columns:1fr}.rlb-nav{width:42px;height:42px}}
+@media(max-width:560px){.review-summary{grid-template-columns:minmax(0,1fr)}.rlb-nav{width:42px;height:42px}}
 /* STAT ROW: tabular nums + animated rule */
 .stat b,.statrow .st b{font-variant-numeric:tabular-nums}
 .stat-rule{display:block;height:3px;width:100%;background:currentColor;opacity:.18;margin-top:14px;transform:scaleX(0);transform-origin:left}
