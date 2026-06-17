@@ -454,8 +454,8 @@ html.lenis,html.lenis body{height:auto}
   .hero-stamp{width:104px;height:104px;font-size:.66rem;left:-8px}
 }
 
-/* ============ HEROSCRUB — cloned scroll-scrub hero (procedural canvas: frozen-cube fade-in -> flood -> freeze; cube falls in) ============ */
-.heroscrub{height:240vh;background:var(--green)}
+/* ============ HEROSCRUB — cloned scroll-scrub hero (procedural canvas: sun rise -> flood -> freeze; cube falls in) ============ */
+.heroscrub{height:340vh;background:var(--green)}
 .heroscrub .hero-stage{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .heroscrub #scene{position:absolute;inset:0;width:100%;height:100%}
 .heroscrub .hero-cube{position:absolute;left:50%;top:50%;z-index:2;width:min(88vw,720px);height:auto;
@@ -1633,7 +1633,23 @@ if(window.gsap&&window.ScrollTrigger){
 
     const cx=W/2, cy=H*0.46;
 
-    // sun removed — the scene now opens on the frozen-cube fade-in (see frame() remap)
+    const sunFade=1-smooth(p,0.30,0.52);
+    if(sunFade>0.01){
+      // sun rises from bottom-right and arcs up & over, lighting the text from above (quadratic Bézier)
+      const t=smooth(p,0,0.40);
+      const P0x=W*0.86,P0y=H*0.96, P1x=W*1.06,P1y=H*0.40, P2x=W*0.50,P2y=H*0.20;
+      const mt=1-t;
+      const sx=mt*mt*P0x+2*mt*t*P1x+t*t*P2x;
+      const sy=mt*mt*P0y+2*mt*t*P1y+t*t*P2y;
+      const rad=lerp(64,150,smooth(p,0,0.40))*(Math.min(W,H)/700);
+      const glow=ctx.createRadialGradient(sx,sy,0,sx,sy,rad*3.6);
+      glow.addColorStop(0,`rgba(254,230,45,${0.95*sunFade})`);
+      glow.addColorStop(.4,`rgba(254,230,45,${0.4*sunFade})`);
+      glow.addColorStop(1,'rgba(254,230,45,0)');
+      ctx.fillStyle=glow;ctx.beginPath();ctx.arc(sx,sy,rad*3.6,0,7);ctx.fill();
+      ctx.fillStyle=`rgba(254,230,45,${sunFade})`;
+      ctx.beginPath();ctx.arc(sx,sy,rad,0,7);ctx.fill();
+    }
 
     const flood=smooth(p,0.32,0.74);
     if(flood>0.001){
@@ -1686,8 +1702,8 @@ if(window.gsap&&window.ScrollTrigger){
     let appear,scale,drift;
     if(reduce){appear=0.9;scale=0.55;drift=0;}
     else{
-      appear=0.32+0.68*smooth(p,0.0,0.26);        // fade in immediately on scroll (ghosted -> solid) — kills the early dead space
-      const grow  =smooth(p,0.04,0.50);           // start growing early so the cube fills the frame, peak ~p=0.50
+      appear=smooth(p,0.30,0.48);                 // fade in as the pool freezes — then stays visible
+      const grow  =smooth(p,0.30,0.56);           // emerge & grow to the hero peak (~0.75) at p=0.56
       const shrink=smooth(p,0.56,0.80);           // shrink down to the blender-cube size (0.20) BEFORE it leaves
       const fall  =smooth(p,0.60,1.00);           // then COMMIT to the fall — a small cube dropping into the jar
       scale=0.42 + grow*0.33 - shrink*0.55;       // .42 -> ~0.75 peak -> locked at ~0.20 by p=0.80 (matches the blender cube)
@@ -1697,13 +1713,7 @@ if(window.gsap&&window.ScrollTrigger){
     cube.style.transform=`translate(-50%, calc(-50% + ${drift.toFixed(2)}vh)) scale(${Math.max(scale,0.06).toFixed(3)})`;
   }
 
-  function frame(){
-    const p=reduce?0.05:progress();
-    // sun lead-in removed: remap raw scroll so the frozen-cube fade-in (old p≈0.30) now opens the scene.
-    // pe keeps the flood/freeze/cube timing in their original threshold space, so the rest plays the same.
-    const pe=reduce?0.6:(0.30+0.70*p);
-    draw(pe);updateText(p);updateCube(pe);ticking=false;
-  }
+  function frame(){const p=reduce?0.05:progress();draw(p);updateText(p);updateCube(p);ticking=false;}
   function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(frame);}}
   function init(){size();frame();}
   window.addEventListener('resize',()=>{size();frame();});
