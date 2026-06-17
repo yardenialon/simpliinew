@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SimpliiGood — Real super food, from your kitchen to industry</title>
+<meta name="description" content="SimpliiGood grows fresh, flavor-free spirulina and the food-tech to put it everywhere. Two divisions: Simplii Green fresh-frozen cubes for your kitchen, and Simplii Texture spirulina food-tech for industry. Real. Super. Food."/>
+<meta name="theme-color" content="#0E2A2F"/>
+<meta property="og:title" content="SimpliiGood — Real super food, from your kitchen to industry"/>
+<meta property="og:description" content="Two divisions, one super ingredient. Simplii Green for your kitchen, Simplii Texture for industry."/>
+<meta property="og:image" content="og-image.jpg"/>
+<link rel="stylesheet" href="site.css"/>
+<style>
+/* ============================================================
+   BRAND HOME / DIVISION CHOOSER — supplemental styles only.
+   Uses site.css global tokens (--ink --green --yellow --starburst
+   --display --cond --body --wrap etc). Visible by default; motion
+   is progressive enhancement.
+   ============================================================ */
+
+/* ---- HERO (brand, dark) ---- */
+.bhero{background:var(--ink);color:#fff;position:relative;overflow:hidden;
+  padding:clamp(120px,16vh,200px) 0 clamp(48px,6vw,84px);text-align:center}
+.bhero::before{content:"";position:absolute;left:50%;top:-10%;width:120%;height:80%;transform:translateX(-50%);
+  background:radial-gradient(60% 60% at 50% 0%,rgba(254,230,45,.16),transparent 60%);pointer-events:none}
+.bhero .wrap{position:relative;z-index:2}
+.bhero .eyebrow{color:var(--yellow);justify-content:center;display:flex;margin-bottom:26px}
+.bhero h1{font-family:var(--display);text-transform:uppercase;line-height:.9;letter-spacing:-.022em;
+  font-size:clamp(2.8rem,7.2vw,7rem);margin:0 auto;max-width:16ch}
+.bhero h1 .y{color:var(--yellow)}
+.bhero .lead{font-family:var(--cond);font-weight:500;color:rgba(255,255,255,.82);
+  font-size:clamp(1.1rem,1.4vw,1.45rem);line-height:1.5;max-width:60ch;margin:28px auto 0}
+.bhero .cue{margin-top:40px;font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.18em;
+  font-size:.72rem;color:rgba(255,255,255,.55);display:inline-flex;align-items:center;gap:10px}
+.bhero .cue::after{content:"";width:1px;height:34px;background:linear-gradient(rgba(255,255,255,.5),transparent);
+  animation:cueDrop 1.8s var(--ease-simplii) infinite}
+@keyframes cueDrop{0%{transform:scaleY(.2);transform-origin:top;opacity:0}40%{opacity:1}100%{transform:scaleY(1);transform-origin:top;opacity:0}}
+
+/* ---- THE CHOOSER (split panels) ---- */
+.chooser{display:flex;width:100%;min-height:clamp(540px,76vh,820px);background:var(--ink)}
+.cpanel{position:relative;flex:1 1 50%;overflow:hidden;display:flex;align-items:flex-end;
+  text-decoration:none;color:#fff;transition:flex-grow .6s var(--ease-simplii)}
+.cpanel+.cpanel{border-left:1px solid rgba(255,255,255,.12)}
+@media(hover:hover) and (pointer:fine){
+  .chooser:hover .cpanel{flex-grow:.84}
+  .chooser .cpanel:hover{flex-grow:1.32}
+}
+.cpanel>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 1s var(--ease-simplii);transform:scale(1.02)}
+.cpanel:hover>img{transform:scale(1.09)}
+.cpanel .ov{position:absolute;inset:0;z-index:1}
+.cpanel.green .ov{background:linear-gradient(178deg,rgba(14,42,47,.34) 0%,rgba(14,42,47,.62) 52%,rgba(14,42,47,.92) 100%)}
+.cpanel.texture .ov{background:linear-gradient(178deg,rgba(49,178,120,.30) 0%,rgba(14,42,47,.66) 55%,rgba(14,42,47,.93) 100%)}
+.cpanel .wm{position:absolute;z-index:1;top:clamp(20px,4vw,54px);left:clamp(20px,3vw,48px);right:6%;
+  font-family:var(--display);text-transform:uppercase;line-height:.82;letter-spacing:-.02em;
+  font-size:clamp(3rem,7vw,7rem);color:#fff;opacity:.10;pointer-events:none}
+.cpanel.texture .wm{color:var(--starburst);opacity:.18}
+.cin{position:relative;z-index:2;padding:clamp(28px,3.4vw,60px);max-width:620px}
+.cin .ctag{display:inline-block;font-family:var(--cond);font-weight:700;text-transform:uppercase;
+  letter-spacing:.13em;font-size:.72rem;color:var(--yellow);margin-bottom:16px}
+.cpanel.texture .cin .ctag{color:#bff3da}
+.cin .cmega{display:block;font-family:var(--display);text-transform:uppercase;line-height:.86;
+  letter-spacing:-.022em;font-size:clamp(2.6rem,5.6vw,5rem);color:#fff}
+.cin .csub{display:block;font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:rgba(255,255,255,.92);font-size:clamp(1rem,1.4vw,1.3rem);margin-top:10px}
+.cin .cbody{display:block;font-family:var(--cond);font-weight:500;color:rgba(255,255,255,.78);
+  font-size:1.02rem;line-height:1.5;max-width:42ch;margin:16px 0 26px}
+.cin .cgo{display:inline-flex;align-items:center;gap:.6em;font-family:var(--cond);font-weight:700;
+  text-transform:uppercase;letter-spacing:.05em;font-size:.92rem;padding:.85em 1.5em;border-radius:999px;
+  transition:transform .25s var(--ease-simplii),box-shadow .25s ease,background .25s ease}
+.cpanel.green .cgo{background:var(--yellow);color:var(--green)}
+.cpanel.texture .cgo{background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.5)}
+.cpanel .cgo .arr{transition:transform .3s var(--ease-simplii)}
+.cpanel:hover .cgo{transform:translateY(-3px)}
+.cpanel:hover .cgo .arr{transform:translateX(5px)}
+@media(max-width:780px){
+  .chooser{flex-direction:column;min-height:0}
+  .cpanel{min-height:clamp(380px,58vh,520px);flex:none}
+  .cpanel+.cpanel{border-left:0;border-top:1px solid rgba(255,255,255,.12)}
+}
+
+/* ---- TECHNOLOGY band (cream) ---- */
+.tech{background:var(--cream)}
+.tech .split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
+.tech h2{font-family:var(--display);text-transform:uppercase;line-height:.9;letter-spacing:-.022em;
+  color:var(--ink);font-size:clamp(2.2rem,4.6vw,4rem)}
+.tech h2 .g{color:var(--starburst)}
+.tech p{font-family:var(--cond);font-weight:500;color:rgba(14,42,47,.78);font-size:1.08rem;line-height:1.6;margin-top:18px;max-width:46ch}
+.tech .pts{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:14px}
+.tech .pts li{font-family:var(--cond);font-weight:600;color:var(--ink);display:flex;gap:12px;align-items:flex-start;font-size:1.04rem}
+.tech .pts li::before{content:"";flex:0 0 auto;width:22px;height:22px;margin-top:1px;border-radius:50%;
+  background:var(--starburst);box-shadow:0 0 0 4px rgba(49,178,120,.16)}
+.tech .tmedia{position:relative}
+.tech .tmedia img{width:100%;border-radius:var(--r-lg);box-shadow:var(--el-4,0 30px 60px -30px rgba(14,42,47,.5));display:block;aspect-ratio:3/2;object-fit:cover}
+@media(max-width:820px){.tech .split{grid-template-columns:1fr;gap:30px}.tech .tmedia{order:-1}}
+
+/* ---- STATS strip ---- */
+.bstats{background:var(--ink);color:#fff}
+.bstats .row{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,48px);text-align:center}
+.bstats .st b{display:block;font-family:var(--display);font-size:clamp(2rem,4vw,3.4rem);color:var(--yellow);line-height:1}
+.bstats .st span{display:block;font-family:var(--cond);font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+  font-size:.74rem;color:rgba(255,255,255,.7);margin-top:10px}
+@media(max-width:680px){.bstats .row{grid-template-columns:repeat(2,1fr);gap:30px 20px}}
+
+/* ---- INVESTORS band (image, dark) ---- */
+.invest{position:relative;overflow:hidden;background:var(--ink);color:#fff}
+.invest>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32}
+.invest .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,42,47,.92) 0%,rgba(14,42,47,.7) 45%,rgba(14,42,47,.4) 100%)}
+.invest .wrap{position:relative;z-index:2}
+.invest h2{font-family:var(--display);text-transform:uppercase;line-height:.9;letter-spacing:-.022em;
+  font-size:clamp(2.2rem,4.8vw,4.2rem);max-width:16ch}
+.invest h2 .y{color:var(--yellow)}
+.invest p{font-family:var(--cond);font-weight:500;color:rgba(255,255,255,.82);font-size:1.1rem;line-height:1.6;max-width:50ch;margin:20px 0 30px}
+.invest .icta{display:flex;flex-wrap:wrap;gap:14px}
+
+/* ---- FLY reveal (visible by default; gsap drives entrance) ---- */
+.js-on [data-reveal="fly"]{will-change:transform,opacity}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-prog" id="scrollProg" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav nav-light" id="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><img src="images/wordmark.png" alt="SimpliiGood" onerror="this.style.display='none'"/></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="simplii-green.html">For Consumers</a>
+      <a href="texture.html">For Industry</a>
+      <a href="food-service.html">Food Service</a>
+      <a href="#tech">Technology</a>
+      <a href="#investors">Investors</a>
+      <a href="simplii-green.html#stores">Find a Store</a>
+      <a class="btn btn-green" href="mailto:hello@simpliigood.com">Contact <span class="arr">&#8594;</span></a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ BRAND HERO ============ -->
+<section class="bhero" id="top">
+  <div class="wrap">
+    <span class="eyebrow reveal">A spirulina innovation company</span>
+    <h1 class="reveal">Real super food,<br/>from your kitchen<br/>to <span class="y">industry.</span></h1>
+    <p class="lead reveal">SimpliiGood grows fresh, flavor-free spirulina, and the food-tech to put it everywhere. Two divisions, one super ingredient. Choose your path.</p>
+    <div class="reveal"><span class="cue">Choose a division</span></div>
+  </div>
+</section>
+
+<!-- ============ THE CHOOSER ============ -->
+<div class="chooser" aria-label="Choose a SimpliiGood division">
+  <a class="cpanel green" href="simplii-green.html" data-cursor="Enter">
+    <img src="images/footer-pack.webp" alt="Simplii Green fresh-frozen spirulina pack and cubes" loading="eager"/>
+    <span class="ov"></span>
+    <span class="wm" aria-hidden="true">Simplii<br/>Green</span>
+    <span class="cin">
+      <span class="ctag">Consumer &middot; for your kitchen</span>
+      <span class="cmega">Simplii Green</span>
+      <span class="csub">Frozen spirulina cubes</span>
+      <span class="cbody">Fresh-frozen spirulina cubes for everyday wellness. Flavor-free, drop one in, blend, done.</span>
+      <span class="cgo">Explore Simplii Green <span class="arr">&#8594;</span></span>
+    </span>
+  </a>
+  <a class="cpanel texture" href="texture.html" data-cursor="Enter">
+    <img src="images/texture-slices.webp" alt="Simplii Texture spirulina-based smoked salmon" loading="eager"/>
+    <span class="ov"></span>
+    <span class="wm" aria-hidden="true">Simplii<br/>Texture</span>
+    <span class="cin">
+      <span class="ctag">B2B &middot; investors &middot; partners</span>
+      <span class="cmega">Simplii Texture</span>
+      <span class="csub">Food-tech ingredients</span>
+      <span class="cbody">Spirulina solutions for manufacturers. Clean natural color, complete protein and real texture, built for scale.</span>
+      <span class="cgo">Explore Simplii Texture <span class="arr">&#8594;</span></span>
+    </span>
+  </a>
+</div>
+
+<!-- ============ TECHNOLOGY ============ -->
+<section class="sec tech" id="tech">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--starburst)">The platform</span>
+      <h2>Fresh spirulina,<br/><span class="g">engineered for scale.</span></h2>
+      <p>One organism, grown clean and harvested to order, then engineered two ways: dropped into your kitchen as a cube, or built into the next generation of food for industry.</p>
+      <ul class="pts">
+        <li>Grown in closed photobioreactors, alive and traceable, never a dried powder.</li>
+        <li>Flavor-free and complete: protein, iron, B-vitamins and phycocyanin antioxidant.</li>
+        <li>One supply chain feeding both the retail cube and the food-tech ingredient.</li>
+      </ul>
+    </div>
+    <div class="tmedia" data-reveal="fly" data-fly="right">
+      <img src="images/tech-bioreactor.webp" alt="Spirulina growing in glass photobioreactor tubes in a clean facility" loading="lazy"/>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="sec bstats">
+  <div class="wrap">
+    <div class="row">
+      <div class="st reveal"><b>400+</b><span>US stores</span></div>
+      <div class="st reveal"><b>12 yrs</b><span>Spirulina expertise</span></div>
+      <div class="st reveal"><b>Non&#8209;GMO</b><span>Vegan &middot; gluten free</span></div>
+      <div class="st reveal"><b>2</b><span>Divisions, one brand</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INVESTORS ============ -->
+<section class="sec invest" id="investors">
+  <img src="images/farm-aerial.webp" alt="Aerial view of spirulina cultivation ponds" loading="lazy"/>
+  <span class="ov"></span>
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--yellow)">Investors &amp; partners</span>
+    <h2>Backing the future<br/>of <span class="y">super food.</span></h2>
+    <p>A 12-year spirulina company scaling into the US, in 400+ stores and building the food-tech to put real super food everywhere. We are talking to investors, retailers and food manufacturers.</p>
+    <div class="icta">
+      <a class="btn btn-yellow" href="mailto:hello@simpliigood.com?subject=SimpliiGood%20investor%20enquiry">Investor relations <span class="arr">&#8594;</span></a>
+      <a class="btn btn-outline-light" href="texture.html">Partner with us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" id="site-footer">
+  <div class="wrap">
+    <div class="footer-cta reveal">
+      <div><h2>Sunshine in a cube,<br/><span class="y">straight to your inbox.</span></h2><p class="cta-sub">Recipes, restocks and the occasional treat. No spam, just good, green things.</p></div>
+      <div><form class="news" id="newsForm" novalidate><input type="email" name="email" placeholder="you@email.com" aria-label="Email" required/><button type="submit">Subscribe</button></form><p class="cta-small">Join the SimpliiGood list. Unsubscribe anytime.</p></div>
+    </div>
+    <div class="footer-top">
+      <div class="reveal"><div class="fmark">SimpliiGood</div><p class="tag">Real super food, from your kitchen to industry. Fresh-frozen spirulina cubes and spirulina food-tech. Real. Super. Food.</p><div class="badges"><span>Non-GMO</span><span>Gluten Free</span><span>Vegan</span></div></div>
+      <div class="col reveal"><h4>Simplii Green</h4><a href="simplii-green.html"><span class="fa">&#8594;&nbsp;</span>For Consumers</a><a href="simplii-green.html#use"><span class="fa">&#8594;&nbsp;</span>How to Use</a><a href="simplii-green.html#stores"><span class="fa">&#8594;&nbsp;</span>Find a Store</a><a href="https://shop.simpliigood.com" target="_blank" rel="noopener"><span class="fa">&#8594;&nbsp;</span>Shop</a></div>
+      <div class="col reveal"><h4>Simplii Texture</h4><a href="texture.html"><span class="fa">&#8594;&nbsp;</span>For Industry</a><a href="food-service.html"><span class="fa">&#8594;&nbsp;</span>Food Service</a><a href="about.html"><span class="fa">&#8594;&nbsp;</span>About</a><a href="#investors"><span class="fa">&#8594;&nbsp;</span>Investors</a></div>
+      <div class="col reveal"><h4>Get in touch</h4><a href="mailto:hello@simpliigood.com"><span class="fa">&#8594;&nbsp;</span>hello@simpliigood.com</a><a href="#investors"><span class="fa">&#8594;&nbsp;</span>Investor enquiries</a><p>Non-GMO &middot; Gluten Free &middot; Vegan</p></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-legal">&copy; 2026 SimpliiGood. All rights reserved.</span>
+      <div class="footer-bottom-right">
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 11-4 0 2 2 0 014 0zM3 8.5h3.9V21H3zM9 8.5h3.7v1.7h.05c.5-.95 1.8-1.95 3.6-1.95 3.85 0 4.55 2.5 4.55 5.8V21h-3.9v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
+        </div>
+        <button class="totop" id="toTop" aria-label="Back to top">Top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+      </div>
+    </div>
+    <div class="footer-wm-wrap"><div class="wm reveal">SimpliiGood</div></div>
+    <div class="footer-credit">Designed &amp; built by <a href="https://rapidxai.com" target="_blank" rel="noopener">RapidX AI</a></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="site.js"></script>
+<script>
+/* Brand-home entrance: chooser panels + directional fly reveals.
+   Content is visible by default; this only animates IN. */
+(function(){
+  if(!window.gsap||!window.ScrollTrigger) return;
+  var EASE='power3.out';
+  /* chooser panels slide up on load */
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
+    gsap.from('.chooser .cpanel',{yPercent:7,autoAlpha:0,duration:1.1,stagger:.14,ease:EASE,delay:.15});
+  }
+  /* directional fly reveals (tech image, etc.) */
+  gsap.utils.toArray('[data-reveal="fly"]').forEach(function(el){
+    var dir=el.getAttribute('data-fly')||'up',v={autoAlpha:0,duration:1.05,ease:EASE,immediateRender:false,overwrite:'auto'};
+    if(dir==='left'){v.x=-90;v.rotation=-2;}else if(dir==='right'){v.x=90;v.rotation=2;}else{v.y=80;}
+    ScrollTrigger.create({trigger:el,start:'top 88%',once:true,onEnter:function(){gsap.from(el,v);}});
+  });
+  /* parallax drift on the investors backdrop */
+  gsap.to('.invest>img',{yPercent:12,ease:'none',scrollTrigger:{trigger:'.invest',start:'top bottom',end:'bottom top',scrub:true}});
+})();
+</script>
+</body>
+</html>

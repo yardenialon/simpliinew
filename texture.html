@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Simplii Texture, Spirulina Seafood, SimpliiGood Food Tech</title>
+<meta name="description" content="Simplii Texture turns spirulina into clean, plant-based smoked salmon and seafood textures. Real bite, real nutrition, zero fish. For chefs, food innovators and investors."/>
+<meta name="theme-color" content="#0E2A2F"/>
+<link rel="stylesheet" href="site.css"/>
+<style>
+/* ============================================================
+   TEXTURE PAGE, supplemental styles
+   Never overrides site.css global tokens; only adds specifics.
+   ============================================================ */
+
+/* ---- THREE WINS: starburst band + accent cards ------------ */
+.sec.wins-band {
+  background: var(--ink);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.sec.wins-outer {
+  background: var(--ink);
+}
+
+.sec.wins-outer .sec-head h2,
+.sec.wins-outer .sec-head p {
+  color: #fff;
+}
+
+.sec.wins-outer .sec-head .eyebrow {
+  color: var(--starburst);
+}
+
+/* Three-win cards: dark background, colored top accent */
+.sec.wins-outer .card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  position: relative;
+  overflow: hidden;
+  padding-top: 2.2rem;
+}
+
+.sec.wins-outer .card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+
+.sec.wins-outer .card:nth-child(1)::before { background: var(--starburst); }
+.sec.wins-outer .card:nth-child(2)::before { background: var(--yellow); }
+.sec.wins-outer .card:nth-child(3)::before { background: var(--raspberry); }
+
+.sec.wins-outer .card:nth-child(1) .ic {
+  background: var(--starburst);
+  color: var(--ink);
+}
+.sec.wins-outer .card:nth-child(2) .ic {
+  background: var(--yellow);
+  color: var(--ink);
+}
+.sec.wins-outer .card:nth-child(3) .ic {
+  background: var(--raspberry);
+  color: #fff;
+}
+
+.sec.wins-outer .card h3 { color: #fff; }
+.sec.wins-outer .card p  { color: rgba(255,255,255,0.72); }
+
+/* Accent label on each card */
+.card-tag {
+  display: inline-block;
+  font-family: var(--cond, sans-serif);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 0.18em 0.6em;
+  border-radius: 2px;
+  margin-bottom: 0.8rem;
+}
+.card-tag.green  { background: rgba(49,178,120,0.18); color: var(--starburst); }
+.card-tag.yellow { background: rgba(254,230,45,0.18); color: var(--yellow); }
+.card-tag.pink   { background: rgba(239,70,123,0.18); color: var(--raspberry); }
+
+/* ---- IMAGE INTERLUDE BAND ------------------------------ */
+.img-band {
+  position: relative;
+  overflow: hidden;
+  height: clamp(260px, 36vw, 520px);
+  background: var(--ink);
+}
+.img-band img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.72;
+  display: block;
+}
+.img-band-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(14,42,47,.82) 0%, rgba(14,42,47,.28) 60%, transparent 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(1.5rem, 6vw, 6rem);
+}
+.img-band-copy {
+  max-width: 480px;
+}
+.img-band-copy .eyebrow { color: var(--yellow); }
+.img-band-copy h2 { color: #fff; margin: 0.4rem 0 0.8rem; }
+.img-band-copy p  { color: rgba(255,255,255,0.80); font-size: 1.05rem; line-height: 1.6; margin: 0; }
+
+/* ---- PROCESS (HOW WE MAKE FISH) ----------------------- */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  position: relative;
+  margin-top: 3rem;
+}
+
+/* connecting dashed line between steps */
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 2.6rem;
+  left: calc(100% / 6);
+  right: calc(100% / 6);
+  height: 2px;
+  background: repeating-linear-gradient(to right, var(--yellow) 0, var(--yellow) 8px, transparent 8px, transparent 18px);
+  pointer-events: none;
+}
+
+.process-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1.5rem 2rem;
+}
+
+.process-num {
+  width: 5.2rem;
+  height: 5.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display, sans-serif);
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  margin-bottom: 1.4rem;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.process-step:nth-child(1) .process-num { background: var(--yellow);     color: var(--ink); }
+.process-step:nth-child(2) .process-num { background: var(--starburst);  color: #fff; }
+.process-step:nth-child(3) .process-num { background: var(--raspberry);  color: #fff; }
+
+.process-step h3 {
+  font-family: var(--display, sans-serif);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #fff;
+  margin: 0 0 0.6rem;
+}
+.process-step p {
+  color: rgba(255,255,255,0.70);
+  font-size: 0.97rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---- STATS: add a chef image split -------------------- */
+.stats-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-top: 2.4rem;
+}
+.stats-split-img {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+}
+.stats-split-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.stats-split-nums {
+  background: var(--ink);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 2rem;
+}
+.stats-split-nums .statrow {
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem 1rem;
+}
+.stats-split-nums .st b {
+  color: var(--yellow);
+}
+.stats-split-nums .st span {
+  color: rgba(255,255,255,0.68);
+}
+
+/* ---- WHAT IT IS section: richer image side ------------ */
+.sec.intro-split .split-media img {
+  border-radius: 10px;
+  box-shadow: 0 24px 64px rgba(14,42,47,.22);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 860px) {
+  .process-steps {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .process-steps::before { display: none; }
+  .process-step { align-items: flex-start; text-align: left; flex-direction: row; gap: 1.2rem; padding: 0 0 0 0; }
+  .process-num { width: 3.6rem; height: 3.6rem; font-size: 1.1rem; margin-bottom: 0; flex-shrink: 0; }
+
+  .stats-split { grid-template-columns: 1fr; }
+  .stats-split-img { min-height: 220px; }
+  .stats-split-nums .statrow { grid-template-columns: 1fr 1fr; }
+
+  .img-band-copy h2 { font-size: 1.5rem; }
+}
+
+@media (max-width: 520px) {
+  .img-band { height: clamp(220px, 55vw, 380px); }
+  .stats-split-nums .statrow { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-prog" id="scrollProg" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+<header class="nav nav-light" id="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><img src="images/wordmark.png" alt="SimpliiGood" onerror="this.style.display='none'"/></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="simplii-green.html#benefits">Why Spirulina</a>
+      <a href="simplii-green.html#use">How to Use</a>
+      <a href="food-service.html">Food Service</a>
+      <a href="texture.html">Simplii Texture</a>
+      <a href="simplii-green.html#stores">Find a Store</a>
+      <a href="about.html">About</a>
+      <a class="btn btn-green" href="https://shop.simpliigood.com" target="_blank" rel="noopener">Shop Now <span class="arr">&#8594;</span></a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="phero ink">
+  <div class="phero-aura" aria-hidden="true"></div>
+  <div class="wrap phero-grid">
+    <div class="reveal">
+      <span class="eyebrow">Simplii Texture &middot; Food Tech Division</span>
+      <h1>The future of seafood, <span class="y">grown from spirulina.</span></h1>
+      <p class="lead">We take the same algae behind our cubes and engineer it into clean, plant-based smoked salmon and seafood textures. Real bite, complete nutrition, zero fish.</p>
+      <div class="phero-cta">
+        <a class="btn btn-yellow" href="#applications">See the applications <span class="arr">&#8594;</span></a>
+        <a class="btn btn-outline-light" href="#contact">Investor &amp; sample requests</a>
+      </div>
+    </div>
+    <div class="phero-media reveal"><img src="images/texture-slices.webp" alt="Spirulina-based smoked salmon slices"/></div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Spirulina seafood</span><span>Zero fish</span><span>Real texture</span><span>Complete protein</span>
+  <span>Spirulina seafood</span><span>Zero fish</span><span>Real texture</span><span>Complete protein</span>
+</div></div>
+
+<!-- WHAT IT IS -->
+<section class="sec intro-split">
+  <div class="wrap split wide-l">
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--starburst)">The breakthrough</span>
+      <h2>We turned an algae into <span style="color:var(--starburst)">a canvas.</span></h2>
+      <p>Spirulina is a complete protein with a natural structure we can shape. By working with its chlorophyll and fibres, we craft a clean, whole-food texture that slices, folds and melts like premium smoked salmon, without a single fish.</p>
+      <p>No farmed salmon. No microplastics. No heavy metals. Just real, traceable nutrition that chefs can plate and consumers can trust.</p>
+    </div>
+    <div class="split-media reveal"><img src="images/texture-bagel.webp" alt="Spirulina smoked salmon on a bagel" loading="lazy"/></div>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section class="sec green" id="applications">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">On the plate</span><h2>Built for <span class="y">real kitchens.</span></h2><p>Slices, flakes and spreads that drop straight into the dishes people already love.</p></div>
+    <div class="galg">
+      <figure class="reveal tall"><img src="images/texture-slices.webp" alt="Smoked salmon slices" loading="lazy"/></figure>
+      <figure class="reveal wide"><img src="images/texture-chef.webp" alt="Chef plating canapes" loading="lazy"/></figure>
+      <figure class="reveal"><img src="images/texture-bagel.webp" alt="Bagel application" loading="lazy"/></figure>
+      <figure class="reveal"><img src="images/texture-canapes.webp" alt="Canapes" loading="lazy"/></figure>
+      <figure class="reveal wide"><img src="images/texture-bagel2.webp" alt="Open bagel" loading="lazy"/></figure>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT MATTERS, dark accent cards -->
+<section class="sec wins-outer">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Why it matters</span><h2>One texture, three wins.</h2></div>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="ic">01</div>
+        <span class="card-tag green">Kitchen-ready</span>
+        <h3>For chefs</h3>
+        <p>A premium, shelf-stable salmon alternative that plates beautifully and holds its bite from prep to plate. Slices, folds, melts.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">02</div>
+        <span class="card-tag yellow">Scalable</span>
+        <h3>For manufacturers</h3>
+        <p>A single-ingredient base for ready meals, spreads and bagels, with clean-label nutrition built in and no cold-chain compromise.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">03</div>
+        <span class="card-tag pink">Net positive</span>
+        <h3>For the planet</h3>
+        <p>Microalgae uses a fraction of the land and water of fish farming, with none of the bycatch, heavy metals or microplastics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE INTERLUDE BAND -->
+<div class="img-band reveal">
+  <img src="images/texture-chef.webp" alt="Chef plating SimpliiGood canapes" loading="lazy"/>
+  <div class="img-band-overlay">
+    <div class="img-band-copy">
+      <span class="eyebrow">In the kitchen</span>
+      <h2>Chefs are already plating it.</h2>
+      <p>From smoked-salmon bagels to fine-dining canapes, SimpliiGood Texture drops straight into the dishes professionals already know.</p>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS, process steps with connector line -->
+<section class="sec ink">
+  <div class="wrap">
+    <div class="sec-head reveal center"><span class="eyebrow">From pond to plate</span><h2>How we make <span class="y">fish without fish.</span></h2></div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="process-num">01</div>
+        <div>
+          <h3>Grow</h3>
+          <p>We cultivate fresh spirulina in clean, controlled water, harvested at peak density and nutritional potency.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">02</div>
+        <div>
+          <h3>Extract</h3>
+          <p>We separate its natural fibres and pigments, using the algae itself as a structural canvas, nothing added.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">03</div>
+        <div>
+          <h3>Craft</h3>
+          <p>We shape it into smoked-salmon slices and seafood textures, ready for the kitchen, zero fish required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS, split with image -->
+<section class="sec yellow">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">By the numbers</span><h2>Real food, real difference.</h2></div>
+    <div class="stats-split reveal">
+      <div class="stats-split-img">
+        <img src="images/flatlay-tray.webp" alt="SimpliiGood product flatlay" loading="lazy"/>
+      </div>
+      <div class="stats-split-nums">
+        <div class="statrow">
+          <div class="st"><b><span class="count" data-to="0">0</span></b><span>Fish, ever</span></div>
+          <div class="st"><b><span class="count" data-to="100">0</span>%</b><span>Plant-based, complete protein</span></div>
+          <div class="st"><b><span class="count" data-to="0">0</span></b><span>Mercury, microplastics or bycatch</span></div>
+          <div class="st"><b><span class="count" data-to="1">0</span></b><span>Traceable algae source</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTORS / CONTACT -->
+<section class="sec green" id="contact">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--yellow)">For partners &amp; investors</span>
+      <h2 style="color:#fff">Taste the <span class="y">future of food.</span></h2>
+      <p style="color:rgba(255,255,255,.82)">Chefs, food companies, distributors and investors: request a sample, the deck, or a conversation about bringing Simplii Texture to your market.</p>
+    </div>
+    <div class="reveal">
+      <form class="form" data-confirm="Request received ✓" novalidate>
+        <div class="field"><label>Name</label><input name="name" placeholder="Full name" required/></div>
+        <div class="field"><label>Company</label><input name="company" placeholder="Company" required/></div>
+        <div class="field"><label>Email</label><input name="email" type="email" placeholder="you@company.com" required/></div>
+        <div class="field"><label>I am a</label><select name="role" required><option value="" disabled selected>Select</option><option>Investor</option><option>Chef / Restaurant</option><option>Food manufacturer</option><option>Distributor</option><option>Press</option></select></div>
+        <div class="field full"><label>What are you interested in?</label><textarea name="msg" rows="3" placeholder="Samples, the investor deck, partnership..."></textarea></div>
+        <button type="submit" class="btn btn-yellow">Request samples / deck <span class="arr">&#8594;</span></button>
+        <p class="formmsg">Thanks, our team will be in touch within one business day.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="site-footer">
+  <div class="wrap">
+    <div class="footer-cta reveal">
+      <div><h2>Sunshine in a cube,<br/><span class="y">straight to your inbox.</span></h2><p class="cta-sub">Recipes, restocks and the occasional treat. No spam, just good, green things.</p></div>
+      <div><form class="news" id="newsForm" novalidate><input type="email" name="email" placeholder="you@email.com" aria-label="Email" required/><button type="submit">Subscribe</button></form><p class="cta-small">Join the SimpliiGood list. Unsubscribe anytime.</p></div>
+    </div>
+    <div class="footer-top">
+      <div class="reveal"><div class="fmark">SimpliiGood</div><p class="tag">Fresh-frozen spirulina, real superfood nutrition made clean, easy and potent. Real. Super. Food.</p><div class="badges"><span>Non-GMO</span><span>Gluten Free</span><span>Vegan</span></div></div>
+      <div class="col reveal"><h4>Explore</h4><a href="simplii-green.html#benefits"><span class="fa">&#8594;&nbsp;</span>Why Spirulina</a><a href="simplii-green.html#use"><span class="fa">&#8594;&nbsp;</span>How to Use</a><a href="simplii-green.html#shop"><span class="fa">&#8594;&nbsp;</span>Shop</a><a href="simplii-green.html#stores"><span class="fa">&#8594;&nbsp;</span>Find a Store</a></div>
+      <div class="col reveal"><h4>Business</h4><a href="food-service.html"><span class="fa">&#8594;&nbsp;</span>Food Service</a><a href="texture.html"><span class="fa">&#8594;&nbsp;</span>Simplii Texture</a><a href="about.html"><span class="fa">&#8594;&nbsp;</span>About</a><a href="https://shop.simpliigood.com" target="_blank" rel="noopener"><span class="fa">&#8594;&nbsp;</span>Online Shop</a></div>
+      <div class="col reveal"><h4>Get in touch</h4><a href="mailto:hello@simpliigood.com"><span class="fa">&#8594;&nbsp;</span>hello@simpliigood.com</a><a href="#contact"><span class="fa">&#8594;&nbsp;</span>Investor enquiries</a><p>Non-GMO &middot; Gluten Free &middot; Vegan</p></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-legal">&copy; 2026 SimpliiGood. All rights reserved.</span>
+      <div class="footer-bottom-right">
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 11-4 0 2 2 0 014 0zM3 8.5h3.9V21H3zM9 8.5h3.7v1.7h.05c.5-.95 1.8-1.95 3.6-1.95 3.85 0 4.55 2.5 4.55 5.8V21h-3.9v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
+        </div>
+        <button class="totop" id="toTop" aria-label="Back to top">Top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+      </div>
+    </div>
+    <div class="footer-wm-wrap"><div class="wm reveal">SimpliiGood</div></div>
+    <div class="footer-credit">Designed &amp; built by <a href="https://rapidxai.com" target="_blank" rel="noopener">RapidX AI</a></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

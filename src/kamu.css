@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* shadcn theme tokens (light) */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+}
+
+/*
+  Preflight is disabled (see tailwind.config.js) so Tailwind cannot reset the
+  rest of the Webflow page. This scoped reset re-creates only what the card
+  needs (border + ring/shadow defaults) inside the mount point.
+*/
+#kamu-root,
+#kamu-root *,
+#kamu-root *::before,
+#kamu-root *::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: hsl(var(--border));
+  --tw-ring-inset: ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+}
+
+#kamu-root img,
+#kamu-root svg {
+  display: block;
+  vertical-align: middle;
+}
+
+#kamu-root h1,
+#kamu-root h2,
+#kamu-root h3,
+#kamu-root p {
+  margin: 0;
+}
+
+/*
+  Equal-height cards: the flex row stretches every card to the tallest one,
+  and the inner base/overlay cards fill that height so bottoms align and the
+  bio/footer distribute evenly regardless of text length.
+*/
+#kamu-root .kamu-card {
+  align-self: stretch;
+}
+#kamu-root .kamu-card > div:first-child,
+#kamu-root .kamu-card > div:first-child > *,
+#kamu-root .kamu-card > div:last-child > * {
+  height: 100%;
+}
