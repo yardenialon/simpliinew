@@ -1623,11 +1623,6 @@ if(window.gsap&&window.ScrollTrigger){
   function mix(c1,c2,t){return `rgb(${Math.round(lerp(c1[0],c2[0],t))},${Math.round(lerp(c1[1],c2[1],t))},${Math.round(lerp(c1[2],c2[2],t))})`;}
   const GREEN=[21,64,72], DEEP=[14,46,52], YELLOW=[254,230,45], STAR=[49,178,120];
 
-  /* sun illustration (replaces the procedural disc; glow is kept) */
-  const sunImg=new Image();let sunReady=false;
-  sunImg.onload=function(){sunReady=true;if(typeof frame==='function')frame();};
-  sunImg.src='images/sun.png';
-
   const specks=[...Array(26)].map(()=>({x:Math.random(),y:Math.random(),r:Math.random()*5+2,
     c:[YELLOW,STAR,[239,70,123],[127,195,73],[43,108,179]][Math.floor(Math.random()*5)],s:Math.random()*0.4+0.2}));
 
@@ -1657,15 +1652,8 @@ if(window.gsap&&window.ScrollTrigger){
       glow.addColorStop(.4,`rgba(254,230,45,${0.4*sunFade})`);
       glow.addColorStop(1,'rgba(254,230,45,0)');
       ctx.fillStyle=glow;ctx.beginPath();ctx.arc(sx,sy,rad*3.6,0,7);ctx.fill();
-      if(sunReady){
-        const sd=rad*6.5;                          // size so the illustration's disc ~= the old sun radius
-        ctx.save();ctx.globalAlpha=sunFade;ctx.imageSmoothingQuality='high';
-        ctx.drawImage(sunImg,sx-sd/2,sy-sd/2,sd,sd);
-        ctx.restore();
-      }else{                                        // fallback disc until the PNG decodes (never blank)
-        ctx.fillStyle=`rgba(254,230,45,${sunFade})`;
-        ctx.beginPath();ctx.arc(sx,sy,rad,0,7);ctx.fill();
-      }
+      ctx.fillStyle=`rgba(254,230,45,${sunFade})`;
+      ctx.beginPath();ctx.arc(sx,sy,rad,0,7);ctx.fill();
     }
 
     const flood=smooth(p,0.32,0.74);
