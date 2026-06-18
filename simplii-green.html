@@ -87,7 +87,7 @@ h1,h2,h3{font-family:var(--display);font-weight:900;line-height:.92;letter-spaci
 .hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
 .hero-badges span{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;background:var(--green);color:var(--yellow);padding:.5em 1em;border-radius:999px}
 .hero h1{font-size:clamp(3.2rem,8.5vw,7rem);color:var(--green)}
-.hero h1 .ras{color:var(--raspberry)}
+.hero h1 .ras{color:var(--starburst)}
 .hero p.lead{font-family:var(--cond);font-weight:500;text-transform:none;font-size:clamp(1.15rem,2vw,1.5rem);max-width:30ch;margin:22px 0 32px;color:var(--green);line-height:1.35}
 .hero-cta{display:flex;flex-wrap:wrap;gap:14px}
 .hero-visual{position:relative}
@@ -134,8 +134,10 @@ h1,h2,h3{font-family:var(--display);font-weight:900;line-height:.92;letter-spaci
 .cmp li{font-family:var(--cond);font-weight:500;text-transform:none;font-size:1.05rem;padding-left:30px;position:relative;line-height:1.35}
 .cmp.bad li::before{content:"✕";position:absolute;left:0;color:var(--strawberry);font-weight:700}
 .cmp.good li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
-.fresh-media{margin-top:30px;border-radius:22px;overflow:hidden;display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
-.fresh-media img{width:100%;height:100%;object-fit:cover;border-radius:18px;max-height:420px}
+.fresh-media{margin-top:30px;display:flex;gap:20px;align-items:stretch}
+.fresh-media img{object-fit:cover;border-radius:18px;display:block}
+.fresh-media img:first-child{flex:1 1 auto;min-width:0;width:100%;height:clamp(340px,40vw,440px)}
+.fresh-media img:last-child{flex:0 0 auto;width:auto;aspect-ratio:1/1;height:clamp(340px,40vw,440px)}
 
 /* ============ DROP IT, USE CASES (GREEN, the fix for the empty void) ============ */
 .dropit{background:var(--green);color:var(--cream);padding-bottom:clamp(70px,10vw,130px)}
@@ -144,14 +146,50 @@ h1,h2,h3{font-family:var(--display);font-weight:900;line-height:.92;letter-spaci
 .dropit .sec-head .eyebrow{color:var(--yellow)}
 .usecards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .uc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;overflow:hidden;transition:transform .3s ease,background .3s ease}
+/* .uc is a <button> for recipe cards — neutralize native button styling */
+button.uc{appearance:none;-webkit-appearance:none;font:inherit;color:inherit;text-align:left;cursor:pointer;padding:0}
 .uc:hover{transform:translateY(-8px);background:rgba(255,255,255,.1)}
 .uc .ph{aspect-ratio:4/5;overflow:hidden}
 .uc .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .uc:hover .ph img{transform:scale(1.06)}
-.uc .body{padding:20px}
-.uc .n{font-family:var(--cond);font-weight:700;letter-spacing:.1em;font-size:.72rem;color:var(--yellow)}
-.uc h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;font-size:1.3rem;color:var(--white);margin:6px 0 8px}
+.uc .body{padding:20px;display:flex;flex-direction:column;align-items:flex-start}
+.uc .n{font-family:var(--cond);font-weight:700;letter-spacing:.1em;font-size:.72rem;color:var(--yellow);text-transform:uppercase}
+.uc h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;font-size:1.3rem;color:var(--white);margin:6px 0 8px;line-height:1.05}
 .uc p{font-family:var(--cond);font-weight:500;text-transform:none;font-size:.98rem;color:rgba(255,255,255,.75);line-height:1.35}
+.uc .uc-view{margin-top:auto;padding-top:14px;font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:.78rem;color:var(--yellow);display:inline-flex;align-items:center;gap:7px}
+.uc .uc-view .arr{transition:transform .3s var(--ease-out)}
+.uc:hover .uc-view .arr{transform:translateX(4px)}
+.uc-cta:hover{transform:translateY(-8px);background:var(--yellow)}
+
+/* ===== RECIPE MODAL ===== */
+.rmodal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(8,24,27,.82);backdrop-filter:blur(8px);padding:4vh 4vw}
+.rmodal.on{display:flex;animation:rlbIn .25s var(--ease-out)}
+.rmodal-card{position:relative;width:min(920px,96vw);max-height:92vh;overflow:hidden;background:var(--white);border-radius:24px;box-shadow:0 50px 110px -36px rgba(0,0,0,.7);display:grid;grid-template-columns:.92fr 1.08fr;animation:rlbPop .3s var(--ease-out)}
+.rmodal-media{position:relative;background:var(--cream)}
+.rmodal-media img{width:100%;height:100%;object-fit:cover;display:block}
+.rmodal-media .rm-time{position:absolute;left:16px;top:16px;background:var(--yellow);color:var(--green);font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.74rem;padding:.45em 1em;border-radius:999px}
+.rmodal-body{padding:34px 36px;overflow-y:auto;color:var(--green)}
+.rmodal-body .rm-eyebrow{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--starburst)}
+.rmodal-body h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:.98;color:var(--green);letter-spacing:-.01em;margin:10px 0 8px}
+.rmodal-body .rm-tagline{font-family:var(--cond);font-weight:500;text-transform:none;font-size:1.06rem;line-height:1.45;color:var(--green);opacity:.82;margin:0 0 18px}
+.rm-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.rm-meta span{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.72rem;color:var(--green);background:rgba(21,64,72,.08);border:1px solid rgba(21,64,72,.14);border-radius:999px;padding:.45em .9em}
+.rm-meta span b{color:var(--starburst)}
+.rmodal-body h4{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;color:var(--green);margin:18px 0 9px}
+.rm-ing{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+.rm-ing li{font-family:var(--cond);font-weight:500;text-transform:none;font-size:.98rem;line-height:1.3;color:var(--green);padding-left:20px;position:relative}
+.rm-ing li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--starburst)}
+.rm-steps{font-family:var(--cond);font-weight:500;text-transform:none;font-size:1rem;line-height:1.5;color:var(--green)}
+.rm-tip{margin-top:18px;background:rgba(254,230,45,.18);border:1px solid rgba(254,230,45,.5);border-radius:14px;padding:13px 16px;font-family:var(--cond);font-weight:500;text-transform:none;font-size:.94rem;line-height:1.4;color:var(--green)}
+.rm-tip b{font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.74rem}
+.rmodal-body .rm-full{margin-top:22px}
+.rmodal-close{position:absolute;top:14px;right:14px;z-index:3;width:42px;height:42px;border-radius:50%;border:none;cursor:pointer;background:var(--green);color:var(--yellow);display:grid;place-items:center;box-shadow:var(--el-3)}
+.rmodal-close svg{width:20px;height:20px}
+@media(max-width:760px){
+  .rmodal-card{grid-template-columns:1fr;max-height:90vh;overflow-y:auto}
+  .rmodal-media{height:200px}
+  .rmodal-body{padding:24px 22px}
+}
 .dropline{text-align:center;font-family:var(--display);font-size:clamp(2rem,6vw,4.5rem);color:var(--yellow);text-transform:uppercase;margin-bottom:50px}
 .dropline em{color:var(--white);font-style:normal}
 
@@ -162,6 +200,7 @@ h1,h2,h3{font-family:var(--display);font-weight:900;line-height:.92;letter-spaci
 .shop-media img{width:100%;border-radius:14px;display:block;background:#fff}
 .shop-media.has-video{padding:0;background:#fff;aspect-ratio:1/1}
 .shop-media.has-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.55);background:#fff;display:block}
+.shop-media.has-video img.shop-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;background:#fff;display:block;border-radius:0}
 .shop-media .vtag{position:absolute;left:18px;bottom:18px;z-index:2;background:var(--green);color:var(--yellow);font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.74rem;padding:.5em 1em;border-radius:999px}
 .shop h2{font-size:clamp(2.4rem,5vw,4rem);color:var(--green)}
 .shop .price{font-family:var(--display);font-size:2.4rem;color:var(--green);margin:18px 0 6px}
@@ -238,19 +277,6 @@ h1,h2,h3{font-family:var(--display);font-weight:900;line-height:.92;letter-spaci
 .loc-store a{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:.7rem;color:var(--starburst);display:inline-block;margin-top:8px}
 .loc-store a:hover{color:var(--green)}
 @media(max-width:880px){.locator{grid-template-columns:1fr}#storeMap{height:340px}.loc-list{max-height:380px}}
-/* ============ SIMPLII TEXTURE TEASER ============ */
-.texture-teaser{background:var(--ink);color:var(--cream);position:relative;overflow:hidden}
-.texture-teaser::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 70% at 15% 20%,rgba(49,178,120,.20),transparent 60%),radial-gradient(60% 60% at 90% 80%,rgba(239,70,123,.12),transparent 60%);pointer-events:none}
-.tt-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
-.tt-copy .eyebrow{color:var(--starburst);display:block;margin-bottom:14px}
-.tt-copy h2{font-family:var(--display);font-size:clamp(2.2rem,4.8vw,3.9rem);color:#fff;text-transform:uppercase;line-height:.95}
-.tt-copy h2 .y{color:var(--yellow)}
-.tt-copy p{font-family:var(--cond);font-weight:500;text-transform:none;color:rgba(255,255,255,.8);margin:18px 0 30px;max-width:46ch;line-height:1.55;font-size:1.12rem}
-.tt-cta{display:flex;flex-wrap:wrap;gap:14px}
-.tt-media{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
-.tt-media img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/3}
-.tt-media .tt-tag{position:absolute;left:18px;bottom:18px;background:var(--yellow);color:var(--green);font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.74rem;padding:.5em 1em;border-radius:999px}
-@media(max-width:880px){.tt-grid{grid-template-columns:1fr;gap:30px}.tt-media{order:-1}}
 /* RapidX credit */
 .footer-credit{position:relative;z-index:5;text-align:center;font-family:var(--cond);font-weight:600;text-transform:uppercase;letter-spacing:.16em;font-size:.66rem;color:rgba(255,255,255,.4);padding-top:22px}
 .footer-credit a{color:var(--yellow);transition:opacity .2s ease}
@@ -326,7 +352,7 @@ h1,h2,h3{font-family:var(--display);font-weight:900;line-height:.92;letter-spaci
 @media(prefers-reduced-motion:reduce){.footer-wm-wrap .wm{animation:none}}
 
 /* ============ HERO VIDEO ============ */
-.hero-visual video{width:100%;border-radius:26px;box-shadow:0 40px 80px -30px rgba(21,64,72,.55);transform:rotate(2.5deg);background:#fff;display:block}
+.hero-visual video{width:100%;border-radius:26px;box-shadow:0 40px 80px -30px rgba(21,64,72,.55);background:#fff;display:block}
 
 /* ============ IN ACTION (video band) ============ */
 .inaction{background:var(--cream)}
@@ -432,7 +458,9 @@ html.lenis,html.lenis body{height:auto}
   .compare{grid-template-columns:1fr}
   .testi-grid{grid-template-columns:1fr}
   .store-list{grid-template-columns:1fr 1fr}
-  .fresh-media{grid-template-columns:1fr}
+  .fresh-media{flex-direction:column}
+  .fresh-media img:first-child{height:clamp(220px,55vw,320px)}
+  .fresh-media img:last-child{width:100%;height:auto;align-self:stretch}
   .nav-links{position:fixed;inset:0 0 0 auto;width:min(80vw,330px);background:var(--green);flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;padding:40px;transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);z-index:120}
   .nav-links.open{transform:none}
   .nav-links a:not(.btn){color:var(--yellow);font-size:1.3rem}
@@ -732,7 +760,7 @@ p{text-wrap:pretty}
 .stat b,.statrow .st b{font-variant-numeric:tabular-nums}
 .stat-rule{display:block;height:3px;width:100%;background:currentColor;opacity:.18;margin-top:14px;transform:scaleX(0);transform-origin:left}
 /* MARQUEE edge-fade */
-.marquee{-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+/* marquee edge fade-out removed — it read as a white glow over the dark band */
 .marquee-track{will-change:transform}
 /* NAV scrollspy */
 .nav-links a.active:not(.btn)::after{width:100%}
@@ -783,14 +811,13 @@ p{text-wrap:pretty}
       <h1>Real.<br/>Super.<br/><span class="ras">Food.</span></h1>
       <p class="lead">Fresh-frozen spirulina, alive and whole. Sunshine in a cube, the clean, easy &amp; potent way to get your greens.</p>
       <div class="hero-cta">
-        <a class="btn btn-green" href="https://shop.simpliigood.com" target="_blank" rel="noopener">Shop the cubes <span class="arr">&#8594;</span></a>
-        <a class="btn btn-outline-green" href="#use">See how it works</a>
+        <a class="btn btn-green" href="#stores">Find a store <span class="arr">&#8594;</span></a>
+        <a class="btn btn-outline-green" href="https://shop.simpliigood.com" target="_blank" rel="noopener">Shop now</a>
       </div>
     </div>
     <div class="hero-visual">
       <div class="hero-blob"></div>
-      <img src="images/hero-pack.webp" alt="SimpliiGood Spirulina pack" class="px" data-speed="0.12" />
-      <div class="hero-stamp">Drop it.<br/>Done.</div>
+      <video class="px" data-speed="0.12" src="videos/hero-video.mp4" poster="images/hero-video-poster.jpg" autoplay muted loop playsinline aria-label="SimpliiGood Spirulina"></video>
     </div>
   </div>
 </section>
@@ -892,8 +919,8 @@ p{text-wrap:pretty}
       </div>
     </div>
     <div class="fresh-media" data-reveal="fly" data-fly="left">
-      <img src="images/pack-smoothie.webp" alt="SimpliiGood pack with a fresh smoothie" />
-      <img src="images/shop-product.png" alt="SimpliiGood pack with a fresh green smoothie" />
+      <img src="images/audience-athletes.webp" alt="Marathon runners and endurance athletes fueled by SimpliiGood spirulina" />
+      <img src="images/audience-wellness.webp" alt="The wellness community — yoga and self-care — choosing SimpliiGood spirulina" />
     </div>
   </div>
 </section>
@@ -903,17 +930,19 @@ p{text-wrap:pretty}
   <div class="hscroll" id="hscroll">
     <div class="htrack" id="htrack">
       <div class="hpanel intro">
-        <p class="dropline2">Drop it. <em>Done.</em></p>
-        <span class="eyebrow">How to use it</span>
-        <h2>One cube. <span class="y">Works in everything.</span></h2>
-        <p class="ip">Flavor-free and ready to blend. Pop a cube from the tray and drop it into whatever you're already making. No mess, no prep, no swampy taste.</p>
-        <div class="hhint">Scroll to explore <span class="ar">&#8594;</span></div>
+        <p class="dropline2">Drop it. <em>Blend it.</em></p>
+        <span class="eyebrow">Recipes</span>
+        <h2>One cube. <span class="y">Endless recipes.</span></h2>
+        <p class="ip">From a 2-minute morning lemonade to a creamy yogurt bowl, every recipe hides a whole cube of fresh-frozen spirulina, no swampy taste, just real nutrition. Tap any recipe to see it.</p>
+        <div class="hhint">Scroll to browse <span class="ar">&#8594;</span></div>
       </div>
-      <div class="hpanel"><div class="uc"><div class="ph"><img src="images/kitchen.webp" alt="Morning smoothie"/></div><div class="body"><span class="n">01</span><h3>Morning smoothie</h3><p>Drop a cube in with your fruit and blend. Two cubes is all it takes.</p></div></div></div>
-      <div class="hpanel"><div class="uc"><div class="ph"><img src="images/beach-pack.webp" alt="SimpliiGood spirulina pack on the beach"/></div><div class="body"><span class="n">02</span><h3>Coconut water</h3><p>Melt one into water or juice for an instant green boost.</p></div></div></div>
-      <div class="hpanel"><div class="uc"><div class="ph"><img src="images/smoothie-bowl.webp" alt="Smoothie bowl"/></div><div class="body"><span class="n">03</span><h3>Bowls &amp; dressings</h3><p>Stir into smoothie bowls, dressings or soups. It disappears.</p></div></div></div>
-      <div class="hpanel"><div class="uc"><div class="ph"><img src="images/model-green.webp" alt="Daily ritual"/></div><div class="body"><span class="n">04</span><h3>Daily ritual</h3><p>One cube a day. Change nothing else and feel the difference.</p></div></div></div>
-      <div class="hpanel"><div class="uc" style="justify-content:center;align-items:flex-start;background:var(--yellow);border-color:var(--yellow)"><div class="body"><span class="n" style="color:var(--green)">05</span><h3 style="color:var(--green)">Your turn.</h3><p style="color:rgba(21,64,72,.8)">Whatever you're making, it's better green.</p><a class="btn btn-green" style="margin-top:18px" href="https://shop.simpliigood.com" target="_blank" rel="noopener">Shop the cubes <span class="arr">&#8594;</span></a></div></div></div>
+      <div class="hpanel"><button class="uc" data-recipe="berry" data-cursor="View" aria-label="View Berry Iron-Support Smoothie recipe"><div class="ph"><img src="images/recipe-berry.webp" alt="Berry Iron-Support Smoothie"/></div><div class="body"><span class="n">3 min &middot; Easy</span><h3>Berry Iron-Support Smoothie</h3><p>Iron-rich spirulina meets vitamin C berries for maximum absorption.</p><span class="uc-view">View recipe <span class="arr">&#8594;</span></span></div></button></div>
+      <div class="hpanel"><button class="uc" data-recipe="tropical" data-cursor="View" aria-label="View Tropical Kids-Friendly Smoothie recipe"><div class="ph"><img src="images/recipe-tropical.webp" alt="Tropical Kids-Friendly Smoothie"/></div><div class="body"><span class="n">3 min &middot; Beginner</span><h3>Tropical Kids Smoothie</h3><p>Sweet, fruity and kid-approved, they'll never know it's spirulina.</p><span class="uc-view">View recipe <span class="arr">&#8594;</span></span></div></button></div>
+      <div class="hpanel"><button class="uc" data-recipe="yogurt" data-cursor="View" aria-label="View Creamy Spirulina Yogurt Bowl recipe"><div class="ph"><img src="images/recipe-yogurt.webp" alt="Creamy Spirulina Yogurt Bowl"/></div><div class="body"><span class="n">5 min &middot; Beginner</span><h3>Creamy Yogurt Bowl</h3><p>A gut-friendly breakfast bowl that feels like a treat.</p><span class="uc-view">View recipe <span class="arr">&#8594;</span></span></div></button></div>
+      <div class="hpanel"><button class="uc" data-recipe="lemonade" data-cursor="View" aria-label="View Green Lemonade Daily Ritual recipe"><div class="ph"><img src="images/recipe-lemonade.webp" alt="Green Lemonade Daily Ritual"/></div><div class="body"><span class="n">2 min &middot; Beginner</span><h3>Green Lemonade Ritual</h3><p>Your simple, everyday spirulina habit. Light and refreshing.</p><span class="uc-view">View recipe <span class="arr">&#8594;</span></span></div></button></div>
+      <div class="hpanel"><button class="uc" data-recipe="choc" data-cursor="View" aria-label="View Chocolate Peanut Butter Spirulina Smoothie recipe"><div class="ph"><img src="images/recipe-choc.webp" alt="Chocolate Peanut Butter Spirulina Smoothie"/></div><div class="body"><span class="n">3 min &middot; Easy</span><h3>Choc Peanut Butter Smoothie</h3><p>A rich, dessert-like smoothie that delivers serious nutrition.</p><span class="uc-view">View recipe <span class="arr">&#8594;</span></span></div></button></div>
+      <div class="hpanel"><button class="uc" data-recipe="dip" data-cursor="View" aria-label="View Spirulina Avocado Dip recipe"><div class="ph"><img src="images/recipe-dip.webp" alt="Spirulina Avocado Dip"/></div><div class="body"><span class="n">5 min &middot; Easy</span><h3>Spirulina Avocado Dip</h3><p>A savory way to enjoy spirulina, perfect for sharing.</p><span class="uc-view">View recipe <span class="arr">&#8594;</span></span></div></button></div>
+      <div class="hpanel"><div class="uc uc-cta" style="justify-content:center;align-items:flex-start;background:var(--yellow);border-color:var(--yellow)"><div class="body"><span class="n" style="color:var(--green)">Recipe library</span><h3 style="color:var(--green)">More where that came from.</h3><p style="color:rgba(21,64,72,.8)">Smoothies, bowls, drinks &amp; savory dips, explore the full collection.</p><a class="btn btn-green" style="margin-top:18px" href="https://n6hxi54aj4soy.kimi.page/#/recipes" target="_blank" rel="noopener">Browse all recipes <span class="arr">&#8594;</span></a></div></div></div>
     </div>
   </div>
 </section>
@@ -932,7 +961,7 @@ p{text-wrap:pretty}
         <span class="vlabel">Morning ritual</span>
       </div>
       <div class="vcard" data-reveal="rise">
-        <img src="images/flatlay-tray.webp" alt="SimpliiGood pack with a tray of frozen spirulina cubes and a fresh green juice" />
+        <img src="images/inaction-tray.webp" alt="SimpliiGood Spirulina pack beside a glass of fresh green juice, flat lay" />
         <span class="vlabel">Real cubes, real green</span>
       </div>
     </div>
@@ -943,10 +972,7 @@ p{text-wrap:pretty}
 <section class="sec shop" id="shop">
   <div class="wrap shop-grid">
     <div class="shop-media has-video" data-reveal="fly" data-fly="right">
-      <video autoplay muted loop playsinline poster="images/product-spin-poster.jpg" aria-label="SimpliiGood Spirulina pack spinning">
-        <source src="videos/product-spin.mp4" type="video/mp4" />
-        <img src="images/shop-product.png" alt="SimpliiGood Spirulina pack" />
-      </video>
+      <img class="shop-still" src="images/shop-pack.webp" alt="SimpliiGood Spirulina pack on a marble counter" />
       <span class="vtag">10 cubes &middot; ships frozen</span>
     </div>
     <div class="shop-copy reveal">
@@ -960,45 +986,6 @@ p{text-wrap:pretty}
         <li>Kept frozen, alive and potent to your door</li>
       </ul>
       <a class="btn btn-green" href="https://shop.simpliigood.com" target="_blank" rel="noopener">Shop now <span class="arr">&#8594;</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SUSTAINABILITY ============ -->
-<section class="sec sustain">
-  <div class="wrap sustain-grid">
-    <div class="reveal">
-      <span class="eyebrow" style="color:var(--green)">Sustainability</span>
-      <h2>The most efficient protein on the planet.</h2>
-      <p>Microalgae cultivation is regenerative by nature, single ingredient, no fillers, no compromises. Technology that serves nutrition, not the other way around.</p>
-      <div class="bigstat">
-        <b><span class="count" data-to="99">0</span>%</b>
-        <span>less land &amp; water than traditional protein sources</span>
-      </div>
-    </div>
-    <div class="sustain-media" data-reveal="fly" data-fly="left">
-      <img src="images/pack-splash.webp" alt="SimpliiGood spirulina, fresh and green" />
-    </div>
-  </div>
-</section>
-
-<!-- ============ GALLERY ============ -->
-<section class="sec gallery">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">The SimpliiGood lifestyle</span>
-      <h2>Greens that actually look good.</h2>
-      <p>From smoothie bowls to bagels, fresh-frozen spirulina, in real kitchens.</p>
-    </div>
-    <div class="gal-grid">
-      <figure class="tall" data-reveal="fly" data-fly="left"><img src="images/model-yellow.webp" alt="SimpliiGood lifestyle" loading="lazy"/></figure>
-      <figure class="wide" data-reveal="fly" data-fly="up"><img src="images/smoothie-pour.webp" alt="Pouring a fresh green spirulina smoothie" loading="lazy"/></figure>
-      <figure data-reveal="fly" data-fly="right"><img src="images/cube-macro.webp" alt="A single frozen spirulina cube, close up" loading="lazy"/></figure>
-      <figure data-reveal="fly" data-fly="left"><img src="images/smoothie-glass.webp" alt="Green smoothie" loading="lazy"/></figure>
-      <figure class="wide" data-reveal="fly" data-fly="up"><img src="images/flatlay-fresh.webp" alt="Spirulina cubes with fresh greens and fruit, flat lay" loading="lazy"/></figure>
-      <figure class="tall" data-reveal="fly" data-fly="right"><img src="images/beach.webp" alt="On the go" loading="lazy"/></figure>
-      <figure data-reveal="fly" data-fly="left"><img src="images/breakfast-bowl.webp" alt="Spirulina smoothie bowl breakfast" loading="lazy"/></figure>
-      <figure data-reveal="fly" data-fly="up"><img src="images/kitchen.webp" alt="In the kitchen" loading="lazy"/></figure>
     </div>
   </div>
 </section>
@@ -1167,6 +1154,26 @@ p{text-wrap:pretty}
   <div class="rlb-cap" id="rlbCap"></div>
 </div>
 
+<!-- ============ RECIPE MODAL ============ -->
+<div class="rmodal" id="recipeModal" role="dialog" aria-modal="true" aria-label="Recipe details">
+  <div class="rmodal-card">
+    <button class="rmodal-close" id="rmClose" aria-label="Close recipe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="rmodal-media"><img id="rmImg" src="" alt=""/><span class="rm-time" id="rmTime"></span></div>
+    <div class="rmodal-body">
+      <span class="rm-eyebrow">SimpliiGood recipe</span>
+      <h3 id="rmName"></h3>
+      <p class="rm-tagline" id="rmTagline"></p>
+      <div class="rm-meta" id="rmMeta"></div>
+      <h4>Ingredients</h4>
+      <ul class="rm-ing" id="rmIng"></ul>
+      <h4>Method</h4>
+      <p class="rm-steps" id="rmSteps"></p>
+      <div class="rm-tip" id="rmTip"></div>
+      <a class="btn btn-green rm-full" id="rmFull" href="https://n6hxi54aj4soy.kimi.page/#/recipes" target="_blank" rel="noopener">Full recipe &amp; more <span class="arr">&#8594;</span></a>
+    </div>
+  </div>
+</div>
+
 <!-- ============ B2B / FOOD SERVICE ============ -->
 <section class="sec b2b" id="wholesale">
   <div class="wrap b2b-grid">
@@ -1192,7 +1199,7 @@ p{text-wrap:pretty}
       </form>
     </div>
     <div class="b2b-media" data-reveal="fly" data-fly="right">
-      <img src="images/b2b.webp" alt="SimpliiGood for retail and food service" />
+      <img src="images/b2b-bar.webp" alt="A smoothie bar barista blending with SimpliiGood Spirulina" />
     </div>
   </div>
 </section>
@@ -1217,25 +1224,6 @@ p{text-wrap:pretty}
     <div class="stores-cta reveal" style="margin-top:30px">
       <a class="btn btn-green" href="https://shop.simpliigood.com" target="_blank" rel="noopener">Order online instead <span class="arr">&#8594;</span></a>
       <a class="btn btn-outline-green" href="#wholesale">Become a stockist</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SIMPLII TEXTURE TEASER (2nd division / investors) ============ -->
-<section class="sec texture-teaser" id="texture">
-  <div class="wrap tt-grid">
-    <div class="tt-copy reveal">
-      <span class="eyebrow">Simplii Texture &middot; Food Tech</span>
-      <h2>Beyond the cube: <span class="y">spirulina as the future of seafood.</span></h2>
-      <p>Our second division turns the same algae into clean, plant-based smoked salmon and seafood textures. Real bite, real nutrition, zero fish. Built for chefs, food innovators and investors shaping what we eat next.</p>
-      <div class="tt-cta">
-        <a class="btn btn-yellow" href="texture.html">Explore Simplii Texture <span class="arr">&#8594;</span></a>
-        <a class="btn btn-outline-light" href="texture.html#contact">Investor &amp; sample requests</a>
-      </div>
-    </div>
-    <div class="tt-media" data-reveal="fly" data-fly="right">
-      <img src="images/texture-slices.webp" alt="Simplii Texture spirulina-based smoked salmon alternative" />
-      <span class="tt-tag">Spirulina smoked salmon</span>
     </div>
   </div>
 </section>
@@ -1813,6 +1801,65 @@ if(window.gsap&&window.ScrollTrigger){
     else if(e.key==='ArrowRight')show(idx+1);
     else if(e.key==='ArrowLeft')show(idx-1);
   });
+})();
+</script>
+
+<!-- ============ RECIPE MODAL ============ -->
+<script>
+(function(){
+  var modal=document.getElementById('recipeModal');if(!modal)return;
+  var RECIPES={
+    berry:{name:"Berry Iron-Support Smoothie",img:"images/recipe-berry.webp",time:"3 min",difficulty:"Easy",taste:"Fruity, Tart, Vibrant",
+      tagline:"Iron-rich spirulina meets vitamin C-rich berries for maximum absorption.",calories:245,protein:14,
+      ingredients:["28g fresh-frozen spirulina (2 cubes)","1 cup mixed berries (strawberries, blueberries)","½ cup orange juice","½ cup Greek yogurt","1 tbsp chia seeds"],
+      instructions:"Blend berries, orange juice, yogurt and spirulina until smooth. Top with chia seeds for extra fiber and omega-3s.",
+      proTip:"Use frozen berries for a thicker, colder smoothie."},
+    tropical:{name:"Tropical Kids-Friendly Smoothie",img:"images/recipe-tropical.webp",time:"3 min",difficulty:"Beginner",taste:"Sweet, Tropical, Fruity",
+      tagline:"Sweet, fruity and completely kid-approved. They'll never know it's spirulina.",calories:265,protein:4,
+      ingredients:["28g fresh-frozen spirulina (2 cubes)","1 cup pineapple chunks (frozen)","½ cup mango chunks (frozen)","½ banana","1 cup coconut water"],
+      instructions:"Blend all ingredients until smooth. The tropical fruit sweetness completely hides the spirulina.",
+      proTip:"Pour into fun-shaped popsicle molds and freeze for a healthy treat."},
+    yogurt:{name:"Creamy Spirulina Yogurt Bowl",img:"images/recipe-yogurt.webp",time:"5 min",difficulty:"Beginner",taste:"Creamy, Mild, Nutty",
+      tagline:"A gut-friendly breakfast bowl that feels like a treat.",calories:320,protein:26,
+      ingredients:["28g fresh-frozen spirulina (2 cubes)","1 cup Greek yogurt","½ cup granola","¼ cup sliced almonds","1 tbsp honey","Fresh berries for topping"],
+      instructions:"Stir thawed spirulina into the yogurt until fully mixed. Top with granola, almonds, berries and a drizzle of honey.",
+      proTip:"Prepare the night before and refrigerate for a grab-and-go breakfast."},
+    lemonade:{name:"Green Lemonade Daily Ritual",img:"images/recipe-lemonade.webp",time:"2 min",difficulty:"Beginner",taste:"Light, Citrusy, Clean",
+      tagline:"Your simple, everyday spirulina habit. Light, refreshing, effortless.",calories:55,protein:2,
+      ingredients:["28g fresh-frozen spirulina (2 cubes)","1½ cups cold water","Juice of ½ lemon","1 tsp maple syrup (optional)","Pinch of sea salt","Ice cubes"],
+      instructions:"Stir lemon juice, optional maple syrup and salt into cold water. Add slightly thawed spirulina and whisk vigorously until dissolved. Serve over ice.",
+      proTip:"Make a batch in the morning and sip throughout the day."},
+    choc:{name:"Chocolate Peanut Butter Spirulina Smoothie",img:"images/recipe-choc.webp",time:"3 min",difficulty:"Easy",taste:"Rich, Chocolatey, Creamy",
+      tagline:"A rich, dessert-like smoothie that delivers serious nutrition.",calories:380,protein:10,
+      ingredients:["28g fresh-frozen spirulina (2 cubes)","1 tbsp cocoa powder (unsweetened)","1 tbsp peanut butter","1 cup oat milk","1 frozen banana","½ tsp vanilla extract"],
+      instructions:"Blend all ingredients until smooth. The cocoa and peanut butter completely mask the spirulina taste.",
+      proTip:"Use natural peanut butter without added sugar for a cleaner recipe."},
+    dip:{name:"Spirulina Avocado Dip",img:"images/recipe-dip.webp",time:"5 min",difficulty:"Easy",taste:"Creamy, Savory, Herbaceous",
+      tagline:"A savory way to enjoy spirulina. Perfect for gatherings or solo snacking.",calories:180,protein:4,
+      ingredients:["28g fresh-frozen spirulina (2 cubes), thawed","1 ripe avocado","Juice of 1 lime","1 tbsp olive oil","¼ tsp garlic powder","Salt &amp; pepper to taste","Fresh cilantro (optional)"],
+      instructions:"Mash the avocado with lime juice, olive oil and seasonings. Stir in the thawed spirulina until well combined. Serve with veggies or whole-grain crackers.",
+      proTip:"Great as a spread on toast or a dip for crudités."}
+  };
+  var img=document.getElementById('rmImg'),tEl=document.getElementById('rmTime'),nEl=document.getElementById('rmName'),
+      tagEl=document.getElementById('rmTagline'),metaEl=document.getElementById('rmMeta'),ingEl=document.getElementById('rmIng'),
+      stepEl=document.getElementById('rmSteps'),tipEl=document.getElementById('rmTip');
+  function open(id){
+    var r=RECIPES[id];if(!r)return;
+    img.src=r.img;img.alt=r.name;tEl.textContent=r.time;nEl.textContent=r.name;tagEl.textContent=r.tagline;
+    metaEl.innerHTML='<span>'+r.difficulty+'</span><span>'+r.taste+'</span><span><b>'+r.protein+'g</b> protein</span><span><b>'+r.calories+'</b> cal</span>';
+    ingEl.innerHTML=r.ingredients.map(function(i){return '<li>'+i+'</li>';}).join('');
+    stepEl.textContent=r.instructions;
+    tipEl.innerHTML='<b>Pro tip</b><br>'+r.proTip;
+    modal.classList.add('on');document.body.style.overflow='hidden';
+    document.getElementById('rmClose').focus();
+  }
+  function close(){modal.classList.remove('on');document.body.style.overflow='';}
+  document.querySelectorAll('[data-recipe]').forEach(function(el){
+    el.addEventListener('click',function(){open(el.getAttribute('data-recipe'));});
+  });
+  document.getElementById('rmClose').addEventListener('click',close);
+  modal.addEventListener('click',function(e){if(e.target===modal)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('on'))close();});
 })();
 </script>
 

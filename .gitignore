@@ -17,3 +17,10 @@ npm-debug.log*
 
 # build output (do not commit)
 dist/
+
+# Raw source assets (only the optimized public/ copies are committed/shipped)
+/ChatGPT Image*.png
+/DSC*.JPG
+/DSC*.jpg
+/hf_*.png
+/*.mov
