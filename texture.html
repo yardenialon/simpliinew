@@ -247,6 +247,8 @@
   .img-band { height: clamp(220px, 55vw, 380px); }
   .stats-split-nums .statrow { grid-template-columns: 1fr; }
 }
+/* drop the marquee edge fade-out (reads as a white glow over the dark band) */
+.marquee { -webkit-mask-image: none; mask-image: none; }
 </style>
 </head>
 <body>
