@@ -241,7 +241,7 @@ p{text-wrap:pretty}
 .sec-head h2{font-size:var(--fs-h2)}
 .sec-head{margin-bottom:var(--gap-head)}
 .eyebrow{letter-spacing:.22em;font-size:var(--fs-eyebrow);line-height:1;display:inline-flex;align-items:center;gap:.85em}
-.eyebrow::before{content:"";width:28px;height:2px;background:currentColor;display:inline-block;flex:0 0 auto}
+.eyebrow::before{display:none}
 .sec-head.center .eyebrow{justify-content:center}
 .sec{padding:var(--pad-sec) 0}
 /* ELEVATION retrofit */
