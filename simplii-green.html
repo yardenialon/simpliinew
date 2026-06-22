@@ -1218,7 +1218,7 @@ p{text-wrap:pretty}
       </div>
       <div class="col reveal">
         <h4>Get in touch</h4>
-        <a href="mailto:hello@simpliigood.com"><span class="fa">&#8594;&nbsp;</span>hello@simpliigood.com</a>
+        <a href="mailto:Contact@simpliigood.com"><span class="fa">&#8594;&nbsp;</span>Contact@simpliigood.com</a>
         <a href="texture.html#contact"><span class="fa">&#8594;&nbsp;</span>Investor enquiries</a>
         <a href="https://shop.simpliigood.com" target="_blank" rel="noopener"><span class="fa">&#8594;&nbsp;</span>shop.simpliigood.com</a>
         <p>Non-GMO &middot; Gluten Free &middot; Vegan</p>
@@ -1509,12 +1509,14 @@ if(window.gsap&&window.ScrollTrigger){
     map=LF.map(mapEl,{scrollWheelZoom:false,attributionControl:false}).setView([40.5,-83],4);
     window.__locmap=map;
     LF.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:18,subdomains:'abcd'}).addTo(map);
-    STATES.forEach(function(p){
-      var st=p[0],n=p[1],c=CENT[st]; if(!c) return;
-      var rr=Math.max(11,Math.min(40,9+Math.sqrt(n)*2.4));
-      var mk=LF.circleMarker(c,{radius:rr,color:'#154048',weight:2,fillColor:'#31B278',fillOpacity:.78}).addTo(map);
-      mk.bindTooltip('<b>'+st+'</b>: '+n+' stores',{direction:'top',opacity:.95});
-      mk.on('click',function(){setActive(st);});
+    // one marker per individual store (geocoded lat/lng)
+    STORES.forEach(function(s){
+      if(s.lat==null||s.lng==null) return;
+      var mk=LF.circleMarker([s.lat,s.lng],{radius:5.5,color:'#154048',weight:1.5,fillColor:'#31B278',fillOpacity:.9}).addTo(map);
+      var addr=[s.s,s.c,s.st,s.z].filter(Boolean).join(', ');
+      mk.bindTooltip('<b>'+s.n+'</b><br>'+[s.c,s.st].filter(Boolean).join(', '),{direction:'top',opacity:.95});
+      var dir='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent((s.n||'')+' '+addr);
+      mk.bindPopup('<b>'+s.n+'</b><br>'+addr+'<br><a href="'+dir+'" target="_blank" rel="noopener">Get directions &#8594;</a>');
     });
     [120,400,900].forEach(function(d){setTimeout(function(){map.invalidateSize();},d);});
   }
