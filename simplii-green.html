@@ -211,45 +211,23 @@ h1,h2,h3{font-family:var(--display);font-weight:900;line-height:.92;letter-spaci
 .cmp li{font-family:var(--cond);font-weight:500;text-transform:none;font-size:1.05rem;padding-left:30px;position:relative;line-height:1.35}
 .cmp.bad li::before{content:"✕";position:absolute;left:0;color:var(--strawberry);font-weight:700}
 .cmp.good li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
-/* comparison grid (powder vs cubes) — highlighted SimpliiGood card */
-.cmpblock{margin-top:24px}
-.cmpgrid{display:grid;grid-template-columns:1.05fr 1fr 1.18fr;position:relative}
-.cg-attr,.cg-bad,.cg-good{padding:18px 26px;display:flex;align-items:center;gap:12px;font-family:var(--cond);position:relative;z-index:1}
-.cg-attr{grid-column:1;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.92rem;color:rgba(255,255,255,.55)}
-.cg-bad{grid-column:2;font-weight:500;font-size:1.08rem;color:rgba(255,255,255,.62)}
-.cg-good{grid-column:3;font-weight:700;font-size:1.08rem;color:#fff;padding-left:32px;padding-right:30px}
-.cg-attr,.cg-bad{border-bottom:1px solid rgba(255,255,255,.1)}
-.cg-good{border-bottom:1px solid rgba(255,255,255,.12)}
-.cg-l{border-bottom:0}
-.cg-x{color:rgba(255,255,255,.32);font-weight:700;font-size:.95rem;flex:none}
-.cg-ck{color:#4cd193;font-weight:900;font-size:1.05rem;flex:none}
-/* header row */
-.cg-h{align-items:center;padding-top:8px;padding-bottom:18px}
-.cg-bad.cg-h{color:rgba(255,255,255,.8);font-size:1.25rem;font-weight:700}
-.cg-attr.cg-h{border-bottom:1px solid rgba(255,255,255,.1)}
-.cg-good.cg-h{justify-content:space-between;padding-top:28px}
-.cg-gtitle{font-family:var(--display);font-weight:900;text-transform:none;font-size:1.42rem;line-height:1.04;color:#fff;letter-spacing:-.01em}
-.cg-pill{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.62rem;background:var(--yellow);color:var(--green);padding:.6em .85em;border-radius:999px;white-space:nowrap;line-height:1;text-align:center}
-/* the floating card behind the SimpliiGood column */
-.cg-card{grid-column:3;grid-row:1 / -1;z-index:0;background:#1a4d56;border:1px solid rgba(255,255,255,.14);border-radius:24px;box-shadow:0 36px 80px -34px rgba(0,0,0,.7)}
-/* footer button row */
-.cg-f{border-bottom:0;padding-top:0}
-.cg-good.cg-f{padding-top:22px;padding-bottom:30px}
-.cg-btn{width:100%;justify-content:center}
+/* comparison table (fresh-vs-powder) */
+.cmpblock{margin-top:20px}
+.cmptable{width:100%;border-collapse:collapse;margin-top:24px}
+.cmptable th,.cmptable td{text-align:left;padding:20px 26px;vertical-align:top;border-bottom:1px solid rgba(255,255,255,.16)}
+.cmptable thead th{font-family:var(--cond);font-weight:700;font-size:1.2rem;color:var(--white);text-transform:none;padding-bottom:18px;border-bottom:2px solid rgba(255,255,255,.34)}
+.cmptable thead th.col-good{color:var(--yellow)}
+.cmptable tbody th{font-family:var(--cond);font-weight:700;text-transform:none;font-size:1.05rem;color:rgba(255,255,255,.66);width:24%}
+.cmptable tbody td{font-family:var(--cond);font-weight:500;text-transform:none;font-size:1.1rem;color:var(--cream);width:38%}
+.cmptable tbody td.col-good{color:var(--white)}
+.cmptable tbody tr:last-child th,.cmptable tbody tr:last-child td{border-bottom:0}
 .cmp-close{font-family:var(--cond);font-weight:600;text-transform:none;font-size:1.2rem;color:var(--cream);margin-top:30px}
 .cmp-close .y{color:var(--yellow);font-weight:700}
-@media(max-width:680px){
-  .cmpgrid{grid-template-columns:1fr 1fr 1.12fr}
-  .cg-attr,.cg-bad,.cg-good{padding:13px 10px;font-size:.84rem;gap:7px}
-  .cg-attr{font-size:.72rem;letter-spacing:.04em}
-  .cg-bad{font-size:.84rem}
-  .cg-good{font-size:.84rem;padding-left:14px;padding-right:12px}
-  .cg-good.cg-h{flex-direction:column;align-items:flex-start;gap:8px;padding-top:18px}
-  .cg-gtitle{font-size:1.05rem}
-  .cg-card{border-radius:16px}
-  .cg-good.cg-f{padding:16px 8px 20px}
-  .cg-btn{font-size:.64rem;padding:.85em .5em;letter-spacing:.02em;gap:.35em}
-  .cg-btn .arr{display:none}
+@media(max-width:640px){
+  .cmptable th,.cmptable td{padding:14px 12px}
+  .cmptable thead th{font-size:.98rem}
+  .cmptable tbody th{font-size:.9rem;width:30%}
+  .cmptable tbody td{font-size:.95rem}
 }
 .fresh-media{margin-top:30px;display:flex;gap:20px;align-items:stretch}
 .fresh-media img{object-fit:cover;border-radius:18px;display:block}
@@ -1104,45 +1082,20 @@ p{text-wrap:pretty}
       <p>Most people's first experience with spirulina is a green cloud of powder that smells like a fish tank. We get it. This is different.</p>
     </div>
     <div class="cmpblock reveal">
-      <div class="cmpgrid">
-        <div class="cg-card" aria-hidden="true"></div>
-
-        <div class="cg-attr cg-h"></div>
-        <div class="cg-bad cg-h">Dried Powder</div>
-        <div class="cg-good cg-h" style="grid-row:1"><span class="cg-gtitle">SimpliiGood Cubes</span><span class="cg-pill">The Better Way</span></div>
-
-        <div class="cg-attr">Format</div>
-        <div class="cg-bad"><span class="cg-x">&#10005;</span>Loose powder</div>
-        <div class="cg-good" style="grid-row:2"><span class="cg-ck">&#10003;</span>Pre-portioned cubes</div>
-
-        <div class="cg-attr">Serving</div>
-        <div class="cg-bad"><span class="cg-x">&#10005;</span>Measure every time</div>
-        <div class="cg-good" style="grid-row:3"><span class="cg-ck">&#10003;</span>2 cubes &mdash; done</div>
-
-        <div class="cg-attr">Mess</div>
-        <div class="cg-bad"><span class="cg-x">&#10005;</span>Inevitable</div>
-        <div class="cg-good" style="grid-row:4"><span class="cg-ck">&#10003;</span>None</div>
-
-        <div class="cg-attr">Smell</div>
-        <div class="cg-bad"><span class="cg-x">&#10005;</span>Let's call it "earthy"</div>
-        <div class="cg-good" style="grid-row:5"><span class="cg-ck">&#10003;</span>Clean and mild</div>
-
-        <div class="cg-attr">Storage</div>
-        <div class="cg-bad"><span class="cg-x">&#10005;</span>Back of a cabinet</div>
-        <div class="cg-good" style="grid-row:6"><span class="cg-ck">&#10003;</span>Front of your freezer</div>
-
-        <div class="cg-attr">Texture in drinks</div>
-        <div class="cg-bad"><span class="cg-x">&#10005;</span>Sometimes gritty</div>
-        <div class="cg-good" style="grid-row:7"><span class="cg-ck">&#10003;</span>Blends completely smooth</div>
-
-        <div class="cg-attr cg-l">Feels like</div>
-        <div class="cg-bad cg-l"><span class="cg-x">&#10005;</span>A supplement</div>
-        <div class="cg-good cg-l" style="grid-row:8"><span class="cg-ck">&#10003;</span>Real food</div>
-
-        <div class="cg-attr cg-f"></div>
-        <div class="cg-bad cg-f"></div>
-        <div class="cg-good cg-f" style="grid-row:9"><a class="btn btn-yellow cg-btn" href="https://shop.simpliigood.com" target="_blank" rel="noopener">Try the cubes <span class="arr">&#8594;</span></a></div>
-      </div>
+      <table class="cmptable">
+        <thead>
+          <tr><th class="col-attr"></th><th class="col-bad">Dried Powder</th><th class="col-good">SimpliiGood Cubes</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Format</th><td>Loose powder</td><td class="col-good">Pre-portioned cubes</td></tr>
+          <tr><th>Serving</th><td>Measure every time</td><td class="col-good">2 cubes &mdash; done</td></tr>
+          <tr><th>Mess</th><td>Inevitable</td><td class="col-good">None</td></tr>
+          <tr><th>Smell</th><td>Let's call it "earthy"</td><td class="col-good">Clean and mild</td></tr>
+          <tr><th>Storage</th><td>Back of a cabinet</td><td class="col-good">Front of your freezer</td></tr>
+          <tr><th>Texture in drinks</th><td>Sometimes gritty</td><td class="col-good">Blends completely smooth</td></tr>
+          <tr><th>Feels like</th><td>A supplement</td><td class="col-good">Real food</td></tr>
+        </tbody>
+      </table>
       <p class="cmp-close"><span class="y">Real food</span> beats powdered promises.</p>
     </div>
     <div class="fresh-media" data-reveal="fly" data-fly="left">
