@@ -994,7 +994,7 @@ p{text-wrap:pretty}
 <style>
   /* Hero recipe gallery (replaces the hero video) + running text chiron.
      Scoped with an hg- prefix so nothing collides with the page's own .hero/.tile/.btn/.wm. */
-  .hero{padding-bottom:clamp(96px,12vh,132px)} /* room for the chiron band */
+  .hero{padding-bottom:clamp(112px,13vh,154px)} /* room for the chiron band */
   .hg-gallery{position:relative;height:clamp(430px,64vh,680px);display:flex;gap:16px;justify-content:center;
     -webkit-mask:linear-gradient(180deg,transparent 0,#000 11%,#000 89%,transparent 100%);
     mask:linear-gradient(180deg,transparent 0,#000 11%,#000 89%,transparent 100%);}
@@ -1013,13 +1013,14 @@ p{text-wrap:pretty}
   .hg-gallery:hover .hg-tile:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 26px 44px -20px rgba(20,55,45,.72)}
 
   .hg-chiron{position:absolute;left:0;right:0;bottom:0;z-index:4;overflow:hidden;display:flex;
-    background:var(--green,#154048);color:var(--cream,#FBF8EC);border-top:3px solid var(--yellow,#FEE62D);
-    -webkit-mask:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);}
-  .hg-chiron-track{display:inline-flex;align-items:center;white-space:nowrap;flex-shrink:0;padding:22px 0;
-    animation:hgMarquee 40s linear infinite;} /* ALWAYS running — this is the eye-catcher */
-  .hg-chiron-track span{position:relative;font-family:var(--cond,inherit);font-size:clamp(15px,1.6vw,20px);font-weight:600;
-    letter-spacing:.02em;color:var(--cream,#FBF8EC);text-transform:none;padding:0 42px;}
-  .hg-chiron-track span::after{content:"";position:absolute;right:0;top:50%;transform:translateY(-50%);width:1px;height:22px;background:rgba(251,248,236,.28)}
+    background:var(--green,#154048);color:var(--cream,#FBF8EC);border-top:3px solid var(--yellow,#FEE62D);} /* no edge fades — solid edge-to-edge */
+  .hg-chiron-track{display:inline-flex;align-items:center;white-space:nowrap;flex-shrink:0;padding:26px 0;
+    animation:hgMarquee 42s linear infinite;} /* ALWAYS running — this is the eye-catcher */
+  .hg-chiron-track span{display:inline-flex;align-items:center;gap:36px;font-family:var(--cond,inherit);
+    font-size:clamp(18px,2vw,27px);font-weight:800;text-transform:uppercase;letter-spacing:.045em;
+    color:var(--cream,#FBF8EC);padding:0 36px;}
+  .hg-chiron-track span::after{content:"";flex:none;width:9px;height:9px;background:var(--yellow,#FEE62D);
+    transform:rotate(45deg);border-radius:1px;} /* brand-yellow diamond separator */
 
   @keyframes hgScrollUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
   @keyframes hgScrollDown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
