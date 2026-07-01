@@ -247,6 +247,29 @@ h1,h2,h3{font-family:var(--display);font-weight:900;line-height:.92;letter-spaci
   .nutfact2 .nf2-flow{grid-template-columns:1fr;gap:26px}
   .nutfact2 .nf2-pills li{width:100%}
 }
+/* --- Mobile UX redesign: process as a vertical timeline + benefits as a 2-col badge grid --- */
+@media(max-width:620px){
+  /* Process: vertical timeline (icon left, connected by a line, copy right) */
+  .nutfact2 .nf2-flow{grid-template-columns:1fr;gap:0;padding:32px 22px 34px}
+  .nutfact2 .nf2-step{display:grid;grid-template-columns:50px 1fr;column-gap:16px;row-gap:2px;
+    position:relative;padding-bottom:30px;text-align:left}
+  .nutfact2 .nf2-step:last-child{padding-bottom:0}
+  .nutfact2 .nf2-step:not(:last-child)::before{content:"";position:absolute;left:24px;top:50px;bottom:0;width:2px;
+    background:linear-gradient(rgba(25,69,75,.55),rgba(25,69,75,.16))} /* connector line between steps */
+  .nutfact2 .nf2-ic{grid-column:1;grid-row:1;width:50px;height:50px;margin:0}
+  .nutfact2 .nf2-ic svg{width:24px;height:24px}
+  .nutfact2 .nf2-step h4{grid-column:2;grid-row:1;align-self:center;margin:0;font-size:1.04rem}
+  .nutfact2 .nf2-step p{grid-column:2;grid-row:2;margin-top:2px;max-width:none;font-size:.98rem}
+
+  /* Benefits: tidy 2-col badge grid, last item spans full width as the punchline */
+  .nutfact2 .nf2-tag{margin-bottom:4px}
+  .nutfact2 .nf2-pills{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+  .nutfact2 .nf2-pills li{width:auto;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:22px 12px}
+  .nutfact2 .nf2-pills li b{font-size:.82rem}
+  .nutfact2 .nf2-pic{width:46px;height:46px;border-radius:50%;background:rgba(25,69,75,.07)}
+  .nutfact2 .nf2-pic svg{width:26px;height:26px}
+  .nutfact2 .nf2-pills li:last-child{grid-column:1 / -1;flex-direction:row;gap:14px;padding:18px 20px}
+}
 .sunshine .sec-head h2 .out{-webkit-text-stroke:2px var(--green);color:transparent}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:30px}
 .stat{border-top:3px solid var(--green);padding-top:18px}
