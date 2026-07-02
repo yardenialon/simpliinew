@@ -29,6 +29,7 @@ export default defineConfig({
         foodservice: resolve(__dirname, 'food-service.html'),
         wheretobuy: resolve(__dirname, 'where-to-buy.html'),
         freshvspowder: resolve(__dirname, 'fresh-vs-powder.html'),
+        contact: resolve(__dirname, 'contact.html'),
       },
     },
   },
