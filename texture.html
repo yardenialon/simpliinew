@@ -286,21 +286,12 @@
   <div class="wrap nav-inner">
     <a href="index.html" class="brand"><img src="images/wordmark.png" alt="SimpliiGood" onerror="this.style.display='none'"/></a>
     <nav class="nav-links" id="navLinks">
-      <a href="simplii-green.html#benefits">Why Spirulina</a>
-      <a href="simplii-green.html#inside">What's Inside</a>
-      <a href="simplii-green.html#fresh">Why Fresh</a>
-      <a href="simplii-green.html#use">How to Use</a>
-      <div class="nav-dd">
-        <a class="nav-dd-toggle" role="button" tabindex="0" aria-haspopup="true">Where to Buy <span class="dd-caret">&#9662;</span></a>
-        <div class="nav-dd-menu">
-          <a href="simplii-green.html#stores">Store Locator</a>
-          <a href="https://shop.simpliigood.com" target="_blank" rel="noopener">Shop Online</a>
-          <a href="food-service.html">Wholesale</a>
-          <a href="texture.html">Simplii Texture</a>
-        </div>
-      </div>
-
-      <a class="btn btn-green" href="simplii-green.html#stores">Find a Store <span class="arr">&#8594;</span></a>
+      <a href="#technology">The Technology</a>
+      <a href="#applications">Applications</a>
+      <a href="#process">How It's Made</a>
+      <a href="about.html">About</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-green" href="#contact">Request Samples <span class="arr">&#8594;</span></a>
     </nav>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -316,7 +307,7 @@
       <p class="lead">We take the same algae behind our cubes and engineer it into clean, plant-based smoked salmon and seafood textures. Real bite, complete nutrition, zero fish.</p>
       <div class="phero-cta">
         <a class="btn btn-yellow" href="#applications">See the applications <span class="arr">&#8594;</span></a>
-        <a class="btn btn-outline-light" href="food-service.html#pricelist">Investor &amp; sample requests</a>
+        <a class="btn btn-outline-light" href="#contact">Investor &amp; sample requests</a>
       </div>
     </div>
     <div class="phero-media reveal"><img src="images/texture-slices.webp" alt="Spirulina-based smoked salmon slices"/></div>
@@ -399,7 +390,7 @@
 </div>
 
 <!-- HOW IT WORKS, process steps with connector line -->
-<section class="sec ink">
+<section class="sec ink" id="process">
   <div class="wrap">
     <div class="sec-head reveal center"><span class="eyebrow">From pond to plate</span><h2>How we make <span class="y">fish without fish.</span></h2></div>
     <div class="process-steps">
@@ -425,6 +416,33 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- CONTACT / REQUEST SAMPLES -->
+<style>
+  #contact .form{max-width:760px;margin:36px auto 0}
+  #contact .formerr{grid-column:1/-1;font-family:var(--cond);font-weight:700;color:#ffb4b4;display:none}
+  #contact .form .btn{grid-column:1/-1;justify-self:start;margin-top:4px}
+</style>
+<section class="sec green" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal center">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Request samples or <span class="y">talk to our team.</span></h2>
+      <p>Chefs, distributors, investors and product teams &mdash; tell us what you're building and we'll get back to you fast. Every message reaches us at contact@simpliigood.com.</p>
+    </div>
+    <form class="form reveal" data-confirm="Thanks &mdash; we'll be in touch &#10003;" data-subject="Simplii Texture &mdash; sample / contact request" novalidate>
+      <div class="field"><label>Name</label><input name="name" placeholder="Full name" required/></div>
+      <div class="field"><label>Company</label><input name="company" placeholder="Company or restaurant"/></div>
+      <div class="field"><label>Email</label><input name="email" type="email" placeholder="you@company.com" required/></div>
+      <div class="field"><label>I'm interested in</label><select name="interest"><option>Product samples</option><option>Pricing &amp; wholesale</option><option>Partnership / investment</option><option>Something else</option></select></div>
+      <div class="field full"><label>Message</label><textarea name="message" rows="4" placeholder="Tell us what you're building"></textarea></div>
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true"/>
+      <button type="submit" class="btn btn-yellow">Send request <span class="arr">&#8594;</span></button>
+      <p class="formmsg">Thanks &mdash; your message is on its way. We'll reply from contact@simpliigood.com.</p>
+      <p class="formerr">Something went wrong sending that. Please email us directly at contact@simpliigood.com.</p>
+    </form>
   </div>
 </section>
 

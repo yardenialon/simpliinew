@@ -1771,16 +1771,21 @@ window.addEventListener('load',()=>setTimeout(()=>{
   });
 })();
 
-/* ---- Footer: newsletter capture (no backend yet, graceful confirm) ---- */
+/* ---- Footer: newsletter capture (delivered via Web3Forms) ---- */
 (function(){
   var nf=document.getElementById('newsForm');
   if(!nf)return;
   nf.addEventListener('submit',function(e){
     e.preventDefault();
     if(!nf.checkValidity()){nf.reportValidity();return;}
-    nf.classList.add('done');
-    var b=nf.querySelector('button'); if(b)b.textContent="You're in ✓";
-    var i=nf.querySelector('input'); if(i){i.value='';i.placeholder='Subscribed, see you soon';i.disabled=true;}
+    var b=nf.querySelector('button'); var i=nf.querySelector('input[type=email]');
+    if(b){b.disabled=true;b.textContent='…';}
+    var done=function(){nf.classList.add('done');if(b)b.textContent="You're in ✓";if(i){i.value='';i.placeholder='Subscribed, see you soon';i.disabled=true;}};
+    var fd=new FormData(nf);
+    fd.append('access_key','4f93c894-d8be-4f04-b4a7-fa68fed46615');
+    fd.append('from_name','SimpliiGood Website');
+    fd.append('subject','Newsletter signup — SimpliiGood');
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Accept':'application/json'},body:fd}).then(function(r){return r.json();}).then(done).catch(done);
   });
 })();
 
