@@ -27,6 +27,8 @@ export default defineConfig({
         texture: resolve(__dirname, 'texture.html'),
         about: resolve(__dirname, 'about.html'),
         foodservice: resolve(__dirname, 'food-service.html'),
+        wheretobuy: resolve(__dirname, 'where-to-buy.html'),
+        freshvspowder: resolve(__dirname, 'fresh-vs-powder.html'),
       },
     },
   },
