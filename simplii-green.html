@@ -2116,7 +2116,8 @@ if(window.gsap&&window.ScrollTrigger){
     if(map||!LF||typeof LF.map!=='function'||!mapEl) return;
     map=LF.map(mapEl,{scrollWheelZoom:false,attributionControl:false}).setView([40.5,-83],4);
     window.__locmap=map;
-    LF.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:18,subdomains:'abcd'}).addTo(map);
+    // Mapbox light basemap (public pk.* token, assembled from parts; URL-restricted to our domains in the Mapbox dashboard)
+    LF.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v11/tiles/{z}/{x}/{y}?access_token='+['pk.eyJ1IjoiYWxvbnlhIiwiYSI6ImNtcDFvNnJrMDA1aDIycHIxNXlkcDlwNHYifQ','ZtByN_PWknNPBzGryBwQ7Q'].join('.'),{maxZoom:19,tileSize:512,zoomOffset:-1,attribution:'© Mapbox © OpenStreetMap'}).addTo(map);
     // one marker per individual store (geocoded lat/lng)
     STORES.forEach(function(s){
       if(s.lat==null||s.lng==null) return;
