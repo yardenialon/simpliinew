@@ -34,6 +34,7 @@ export default defineConfig({
         ironanemia: resolve(__dirname, 'spirulina-iron-anemia.html'),
         newyork: resolve(__dirname, 'spirulina-new-york.html'),
         learn: resolve(__dirname, 'learn.html'),
+        freshfrozen: resolve(__dirname, 'fresh-frozen-spirulina.html'),
       },
     },
   },
