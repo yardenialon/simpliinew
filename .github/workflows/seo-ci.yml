@@ -1,0 +1,46 @@
+name: SEO CI
+
+# Builds the site and guards SEO quality on every push/PR to main:
+#  • seo-audit  — blocking: titles, meta descriptions, canonicals, one H1 per
+#                 page, Open Graph tags and valid JSON-LD across all pages
+#  • lighthouse — non-blocking: PageSpeed / performance / SEO / a11y scores
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  seo-audit:
+    name: SEO audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build   # runs prebuild (sitemap) + vite build → dist/
+      - name: Audit SEO tags & structured data
+        run: node scripts/seo-audit.mjs dist
+
+  lighthouse:
+    name: Lighthouse (PageSpeed)
+    runs-on: ubuntu-latest
+    continue-on-error: true   # informational — never blocks a deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./.lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
