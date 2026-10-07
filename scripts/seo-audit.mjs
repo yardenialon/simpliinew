@@ -32,6 +32,18 @@ function htmlFiles(d) {
 function count(re, s) { return (s.match(re) || []).length; }
 function firstGroup(re, s) { const m = s.match(re); return m ? (m[1] || '').trim() : null; }
 
+// Decode common HTML entities so title/description lengths reflect what a
+// person (and Google) actually see, not the raw source with &amp; / &mdash;.
+function decode(s) {
+  return s
+    .replace(/&amp;/g, '&').replace(/&mdash;/g, '—').replace(/&ndash;/g, '–')
+    .replace(/&rsquo;|&lsquo;|&#39;/g, "'").replace(/&ldquo;|&rdquo;|&quot;/g, '"')
+    .replace(/&hellip;/g, '…').replace(/&nbsp;/g, ' ')
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
+    .replace(/&[a-z]+;/gi, '?');
+}
+function vlen(s) { return decode(s).length; }
+
 const files = htmlFiles(base);
 if (!files.length) { console.error(`[seo-audit] no HTML files found in ${dir}`); process.exit(1); }
 
@@ -48,7 +60,7 @@ for (const file of files) {
   // Title
   const title = firstGroup(/<title>([\s\S]*?)<\/title>/i, html);
   if (!title) errs.push('missing <title>');
-  else if (title.length > 60) warns.push(`title ${title.length} chars (>60)`);
+  else if (vlen(title) > 60) warns.push(`title ${vlen(title)} chars (>60)`);
 
   // Meta description (backreference \1 matches the SAME quote the attribute opened
   // with, so a content value containing an apostrophe isn't truncated).
@@ -56,7 +68,7 @@ for (const file of files) {
         || html.match(/<meta[^>]+content=(["'])([\s\S]*?)\1[^>]*name=["']description["']/i);
   const desc = dm ? dm[2].trim() : null;
   if (!desc) errs.push('missing meta description');
-  else if (desc.length < 50 || desc.length > 160) warns.push(`description ${desc.length} chars (ideal 50–160)`);
+  else if (vlen(desc) < 50 || vlen(desc) > 160) warns.push(`description ${vlen(desc)} chars (ideal 50–160)`);
 
   // Canonical
   if (!/<link[^>]+rel=["']canonical["']/i.test(html)) errs.push('missing canonical');
