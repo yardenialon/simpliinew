@@ -35,9 +35,10 @@ shop/D2C (cream, **product-spin video**) → sustainability (starburst) → **ga
 testimonials (cream) → B2B/food-service form (green) → store locator (yellow) → footer (green).
 
 ## Media (all from Sujal's original repo, optimized; deploy is Netlify only)
-- `public/videos/` — `product-spin.mp4` (hero-video.mp4, shop section, CSS-zoomed via `.shop-media.has-video`),
-  `in-action.mp4` + `in-action-2.mp4` (UGC Ultra/UgC, the video band). All re-encoded with ffmpeg:
-  scaled, audio stripped, `+faststart`; `<video autoplay muted loop playsinline poster=…>`.
+- `public/videos/` — `blend-scrub.mp4` is the only video still used (the scrub-on-scroll
+  blender clip in `simplii-green.html`). The previously-shipped `hero-video.mp4`,
+  `product-spin.mp4`, `in-action.mp4` and `in-action-2.mp4` were unused in the current
+  markup and have been removed. Videos are muted, `+faststart`, with a poster.
 - All photos optimized with Pillow to ≤1600px (webp q82 / png). Total deployed weight ~5MB.
 - Source originals (5MB+ mp4s, 3-4MB pngs) stay in repo root; only optimized `public/` copies ship.
 - If regenerating imagery: use **Google Nano Banana 2** via the funded GEMINI key (see 17 Jun PM update; Magnific MCP is out of credits). Pass `public/images/hero-pack.webp` as a reference so the pouch stays on-brand; keep packaging a single consistent scale.
