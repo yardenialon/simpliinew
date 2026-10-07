@@ -68,7 +68,7 @@ Alon approved the direction and asked for scroll-scrubbing animations. Now a 4-p
   buttons, a Simplii Texture teaser (#texture), and the new flatlay image in the in-action band.
 - `texture.html` / `about.html` / `food-service.html` — built on shared `public/site.css` +
   `public/site.js` (design system + Lenis/reveals/cursor/forms). Vite builds all 4 (vite.config inputs).
-- Footer: "Designed & built by RapidX AI" credit (`.footer-credit`) on every page.
+- Footer: shared across all pages (newsletter CTA, link columns, socials, back-to-top). The old `.footer-credit` ("Designed & built by RapidX AI") was removed from every page; the unused `.footer-credit` CSS may remain harmlessly.
 - Nav (all pages): Why Spirulina · How to Use · Food Service · Simplii Texture · Find a Store · About · Shop.
 - Images: Texture uses drive "Smoked salmon" photos (texture-*.webp). Sojil's flatlay = flatlay-tray.webp.
 - GOTCHA / lesson: never drive a CSS marquee's animationDuration from a scroll onUpdate — it restarts
