@@ -31,6 +31,7 @@ export default defineConfig({
         freshvspowder: resolve(__dirname, 'fresh-vs-powder.html'),
         contact: resolve(__dirname, 'contact.html'),
         recipes: resolve(__dirname, 'recipes.html'),
+        ironanemia: resolve(__dirname, 'spirulina-iron-anemia.html'),
       },
     },
   },
