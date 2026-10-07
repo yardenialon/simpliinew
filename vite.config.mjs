@@ -32,6 +32,7 @@ export default defineConfig({
         contact: resolve(__dirname, 'contact.html'),
         recipes: resolve(__dirname, 'recipes.html'),
         ironanemia: resolve(__dirname, 'spirulina-iron-anemia.html'),
+        newyork: resolve(__dirname, 'spirulina-new-york.html'),
       },
     },
   },

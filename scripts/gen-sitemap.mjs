@@ -24,6 +24,7 @@ const PAGES = [
   { file: 'where-to-buy.html',    loc: '/where-to-buy.html',    priority: '0.9', changefreq: 'weekly'  },
   { file: 'recipes.html',         loc: '/recipes.html',         priority: '0.8', changefreq: 'monthly' },
   { file: 'spirulina-iron-anemia.html', loc: '/spirulina-iron-anemia.html', priority: '0.8', changefreq: 'monthly' },
+  { file: 'spirulina-new-york.html',    loc: '/spirulina-new-york.html',    priority: '0.9', changefreq: 'monthly' },
   { file: 'fresh-vs-powder.html', loc: '/fresh-vs-powder.html', priority: '0.8', changefreq: 'monthly' },
   { file: 'texture.html',         loc: '/texture.html',         priority: '0.7', changefreq: 'monthly' },
   { file: 'food-service.html',    loc: '/food-service.html',    priority: '0.7', changefreq: 'monthly' },
