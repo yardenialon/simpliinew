@@ -21,6 +21,7 @@ const SITE = 'https://www.simpliigood.com';
 const PAGES = [
   { file: 'index.html',           loc: '/',                     priority: '1.0', changefreq: 'weekly'  },
   { file: 'simplii-green.html',   loc: '/simplii-green.html',   priority: '0.9', changefreq: 'weekly'  },
+  { file: 'learn.html',           loc: '/learn.html',           priority: '0.8', changefreq: 'monthly' },
   { file: 'where-to-buy.html',    loc: '/where-to-buy.html',    priority: '0.9', changefreq: 'weekly'  },
   { file: 'recipes.html',         loc: '/recipes.html',         priority: '0.8', changefreq: 'monthly' },
   { file: 'spirulina-iron-anemia.html', loc: '/spirulina-iron-anemia.html', priority: '0.8', changefreq: 'monthly' },
