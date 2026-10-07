@@ -5,6 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/gen-sitemap.mjs",
     "build": "vite build",
     "preview": "vite preview"
   },
