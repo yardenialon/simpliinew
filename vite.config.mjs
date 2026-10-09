@@ -38,6 +38,7 @@ export default defineConfig({
         benefits: resolve(__dirname, 'spirulina-benefits.html'),
         dosage: resolve(__dirname, 'how-much-spirulina-per-day.html'),
         vschlorella: resolve(__dirname, 'spirulina-vs-chlorella.html'),
+        sideeffects: resolve(__dirname, 'spirulina-side-effects.html'),
       },
     },
   },
