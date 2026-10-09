@@ -39,6 +39,7 @@ export default defineConfig({
         dosage: resolve(__dirname, 'how-much-spirulina-per-day.html'),
         vschlorella: resolve(__dirname, 'spirulina-vs-chlorella.html'),
         sideeffects: resolve(__dirname, 'spirulina-side-effects.html'),
+        difference: resolve(__dirname, 'the-simpliigood-difference.html'),
       },
     },
   },
