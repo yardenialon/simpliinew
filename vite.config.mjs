@@ -37,6 +37,7 @@ export default defineConfig({
         freshfrozen: resolve(__dirname, 'fresh-frozen-spirulina.html'),
         benefits: resolve(__dirname, 'spirulina-benefits.html'),
         dosage: resolve(__dirname, 'how-much-spirulina-per-day.html'),
+        vschlorella: resolve(__dirname, 'spirulina-vs-chlorella.html'),
       },
     },
   },
