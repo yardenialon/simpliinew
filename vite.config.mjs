@@ -35,6 +35,7 @@ export default defineConfig({
         newyork: resolve(__dirname, 'spirulina-new-york.html'),
         learn: resolve(__dirname, 'learn.html'),
         freshfrozen: resolve(__dirname, 'fresh-frozen-spirulina.html'),
+        benefits: resolve(__dirname, 'spirulina-benefits.html'),
       },
     },
   },
