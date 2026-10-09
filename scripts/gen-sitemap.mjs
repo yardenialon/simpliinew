@@ -27,6 +27,7 @@ const PAGES = [
   { file: 'how-much-spirulina-per-day.html', loc: '/how-much-spirulina-per-day.html', priority: '0.8', changefreq: 'monthly' },
   { file: 'spirulina-vs-chlorella.html', loc: '/spirulina-vs-chlorella.html', priority: '0.8', changefreq: 'monthly' },
   { file: 'spirulina-side-effects.html', loc: '/spirulina-side-effects.html', priority: '0.8', changefreq: 'monthly' },
+  { file: 'organic-spirulina.html', loc: '/organic-spirulina.html', priority: '0.8', changefreq: 'monthly' },
   { file: 'where-to-buy.html',    loc: '/where-to-buy.html',    priority: '0.9', changefreq: 'weekly'  },
   { file: 'recipes.html',         loc: '/recipes.html',         priority: '0.8', changefreq: 'monthly' },
   { file: 'spirulina-iron-anemia.html', loc: '/spirulina-iron-anemia.html', priority: '0.8', changefreq: 'monthly' },

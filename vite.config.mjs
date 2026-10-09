@@ -40,6 +40,7 @@ export default defineConfig({
         vschlorella: resolve(__dirname, 'spirulina-vs-chlorella.html'),
         sideeffects: resolve(__dirname, 'spirulina-side-effects.html'),
         difference: resolve(__dirname, 'the-simpliigood-difference.html'),
+        organic: resolve(__dirname, 'organic-spirulina.html'),
       },
     },
   },
