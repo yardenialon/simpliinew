@@ -26,7 +26,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 <link rel="preload" as="font" type="font/woff2" href="fonts/franklin-heavy.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/franklin-cond-med.woff2" crossorigin>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /></noscript>
 
 <style>
 /* ============ BRAND FONTS, Franklin Gothic URW ============ */
@@ -1416,17 +1415,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="sec-head reveal">
       <span class="eyebrow">Where to buy</span>
       <h2>Find us in the freezer aisle.</h2>
-      <p>SimpliiGood is stocked at <b>300+</b> locations across the US. Tap a region on the map, or search by city, store or zip.</p>
+      <p>SimpliiGood is stocked at <b>300+</b> locations across the US. Search your city, store or zip to find fresh-frozen spirulina near you.</p>
     </div>
-    <div class="locator reveal">
-      <div id="storeMap" aria-label="SimpliiGood store map"></div>
-      <div class="loc-panel">
-        <div class="loc-search"><input id="locSearch" type="search" placeholder="Search by city, store or zip code" aria-label="Search stores"/></div>
-        <div class="loc-chips" id="locChips"></div>
-        <div class="loc-count" id="locCount"></div>
-        <div class="loc-list" id="locList"></div>
-      </div>
+    <div class="reveal" style="min-height:520px">
+      <!-- Aisle store locator widget — live retailer availability -->
+      <div id="aisle-store-locator__cmiun6zx300018z09fvxzjcfy"></div>
+      <noscript><p style="font-family:var(--cond);text-align:center">Enable JavaScript to use the store finder, or <a href="where-to-buy.html">browse the full store list</a>.</p></noscript>
     </div>
+    <script>
+      window.aisleStoreLocatorConfigurations = window.aisleStoreLocatorConfigurations || {};
+      window.aisleStoreLocatorConfigurations['cmiun6zx300018z09fvxzjcfy'] = {
+        widgetId: 'cmiun6zx300018z09fvxzjcfy',
+        rootTargetElement: 'aisle-store-locator__cmiun6zx300018z09fvxzjcfy',
+        isStoreLocator: true,
+      };
+    </script>
+    <script defer src="https://cdn.gotoaisle.com/store-locators-v1/script/loader/storeLocatorLoader.js"
+      onload="window.aisleLoader.loadAssets(window.aisleStoreLocatorConfigurations['cmiun6zx300018z09fvxzjcfy'])"></script>
     <div class="stores-cta reveal" style="margin-top:30px">
       <a class="btn btn-green" href="https://shop.simpliigood.com" target="_blank" rel="noopener">Order online instead <span class="arr">&#8594;</span></a>
       <a class="btn btn-outline-green" href="food-service.html">Become a stockist</a>
@@ -1867,8 +1872,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <!-- ============ SCRIPTS (progressive enhancement) ============ -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>window.LMAP=window.L;/* capture Leaflet before any later global L clobber */</script>
 <script src="stores.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
